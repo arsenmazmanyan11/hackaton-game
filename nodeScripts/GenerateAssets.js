@@ -170,14 +170,12 @@ async function generateUncompressedSprites() {
     try {
         const files = await getFolderContent(path, true);
         const images = files.filter((f) => isImage(f));
-        console.warn(images);
         let filesNamesAndPaths = [];
         if (images.length !== 0) {
             filesNamesAndPaths = images.map((el) => {
                 const name = getFileNameWithExtension(el);
                 return { name, path: el };
             });
-            console.warn(filesNamesAndPaths);
         }
         const file = join(assetsPath, "assetNames/assets.js");
         const data = `export const assets = ${JSON.stringify(filesNamesAndPaths)}`;

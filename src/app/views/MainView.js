@@ -1,3 +1,9 @@
+import { lego } from "@armathai/lego";
+import { MainViewEvents } from "../../events/GameEvents";
+import { ForegroundView } from "./ForegroundView";
+import { GameView } from "./GameView";
+import { UIView } from "./UIView";
+
 export class MainView extends Phaser.GameObjects.Container {
     #logo;
     #emitter;
@@ -5,30 +11,16 @@ export class MainView extends Phaser.GameObjects.Container {
     constructor(scene) {
         super(scene);
         this.#build();
+        console.warn("Main View Build");
+        // lego.event.on(GameModelEvents.PlayerModelUpdate, this.#scoreUpdate, this);
     }
 
     #build() {
-        this.#buildEmitter();
-        this.#buildLogo();
-    }
+        this.add((this.gameView = new GameView(this.scene)));
+        this.add((this.uiView = new UIView(this.scene)));
+        // this.add((this.resultView = new ResultView(this.scene)));
+        this.add((this.foregroundView = new ForegroundView(this.scene)));
 
-    #buildLogo() {
-        const logo = this.scene.physics.add.image(100, 100, "logo.png");
-        logo.setVelocity(200, 200);
-        logo.setBounce(1, 1);
-        logo.setCollideWorldBounds(true);
-        this.#logo = logo;
-        this.#emitter.startFollow(this.#logo);
-    }
-
-    #buildEmitter() {
-        const particles = this.scene.add.particles("particle.png");
-        const emitter = particles.createEmitter({
-            speed: 100,
-            scale: { start: 1, end: 0 },
-            alpha: { start: 1, end: 0 },
-            blendMode: "ADD",
-        });
-        this.#emitter = emitter;
+        lego.event.emit(MainViewEvents.ViewsReady);
     }
 }

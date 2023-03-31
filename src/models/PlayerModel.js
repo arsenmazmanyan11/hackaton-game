@@ -6,19 +6,7 @@ export class PlayerModel extends ObservableModel {
         this.makeObservable();
     }
 
-    get score() {
-        return this._score;
-    }
-
-    set score(value) {
-        this._score = value;
-    }
-
     init() {
-        this.score = 0;
-    }
-
-    increaseScore(value = 0) {
-        this.score += Math.max(value, 1);
+        // this.score = 0;
     }
 }

@@ -1,11 +1,10 @@
-export class UIView extends Phaser.GameObjects.Container {
+export class ForegroundView extends Phaser.GameObjects.Container {
     constructor(scene) {
         super(scene);
-
         this.init();
     }
 
     init() {
-        // this.initScoreText();
+        //
     }
 }
