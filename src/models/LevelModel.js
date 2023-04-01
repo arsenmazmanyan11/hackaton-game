@@ -7,7 +7,7 @@ export class LevelModel extends ObservableModel {
         super("LevelModel");
         this._levelName = null;
         this._bkg = null;
-        this._enemies = [];
+        this._enemyType = null;
         this._enemiesCount = null;
         this._enemiesRespawnCounts = null;
         this._enemiesRespawnPositions = null;
@@ -41,6 +41,14 @@ export class LevelModel extends ObservableModel {
 
     set wave(value) {
         this._wave = value;
+    }
+
+    get bkg() {
+        return this._bkg;
+    }
+
+    set bkg(value) {
+        this._bkg = value;
     }
 
     removeEnemy(uuid) {
@@ -83,7 +91,7 @@ export class LevelModel extends ObservableModel {
         const {
             name,
             bkg,
-            enemies,
+            enemy,
             enemiesCount,
             enemiesRespawnCounts,
             enemiesRespawnPositions,
@@ -92,22 +100,23 @@ export class LevelModel extends ObservableModel {
         } = config;
         this._levelName = name;
         this._bkg = bkg;
-        this.setEnemies(enemies);
         this._enemiesCount = enemiesCount;
         this._enemiesRespawnCounts = enemiesRespawnCounts;
         this._enemiesRespawnPositions = enemiesRespawnPositions;
+        this.setEnemies(enemy);
 
         if (boss) {
             this.#setBoss(boss, bossSpawnPosition);
         }
     }
 
-    setEnemies(enemiesConfig) {
-        this._enemies = enemiesConfig.map((c) => {
-            const enemy = new EnemyModel(c);
-            enemy.init();
-            return enemy;
-        });
+    setEnemies(enemyConfig) {
+        const arr = [];
+        for (let i = 0; i < this._enemiesCount; i++) {
+            const enemy = new EnemyModel(enemyConfig);
+            arr.push(enemy);
+        }
+        this._enemies = [...arr];
     }
 
     #setBoss(config, spawnPos) {

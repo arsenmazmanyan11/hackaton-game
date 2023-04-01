@@ -1,6 +1,7 @@
 import { GameState } from "../constants";
 import { LEVEL_CONFIG, PLAYER_CONFIG } from "../gameConfig";
 import { STORE_ITEMS } from "../storeItemModels";
+import { LevelModel } from "./LevelModel";
 import { ObservableModel } from "./ObservableModel";
 import { PlayerModel } from "./PlayerModel";
 import StoreModel from "./StoreModel";
@@ -58,7 +59,9 @@ export class GameModel extends ObservableModel {
 
     setLevel(level) {
         this._level = level;
-        this._levelModel.setNewConfig(LEVEL_CONFIG[this.level - 1]);
+        const newLevel = new LevelModel();
+        newLevel.setNewConfig(LEVEL_CONFIG[this.level - 1]);
+        this._levelModel = newLevel;
     }
 
     init() {

@@ -25,7 +25,9 @@ export class GameView extends Phaser.GameObjects.Container {
 
     #onLevelModelUpdate(newValue, oldValue) {
         console.log(newValue, oldValue);
-        // this.bkg.changeTexture()
+        const { bkg } = newValue;
+        console.warn(bkg);
+        this.bkg.changeTexture(bkg);
     }
 
     update() {
