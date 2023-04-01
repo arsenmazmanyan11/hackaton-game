@@ -5,8 +5,12 @@ export default class GameScene extends Phaser.Scene {
         this.#buildMainView();
     }
 
+    update() {
+        this.mainView?.update();
+    }
+
     #buildMainView() {
-        const mainView = new MainView(this);
-        this.add.existing(mainView);
+        this.mainView = new MainView(this);
+        this.add.existing(this.mainView);
     }
 }

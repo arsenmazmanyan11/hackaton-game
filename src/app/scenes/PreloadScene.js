@@ -37,8 +37,6 @@ export default class PreloadScene extends Phaser.Scene {
     }
 
     loadAssets() {
-        console.warn(assets);
-
         if (assets.length === 0) return;
         assets.forEach((el) => {
             const { name, path } = el;

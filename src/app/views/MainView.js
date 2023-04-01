@@ -5,14 +5,13 @@ import { GameView } from "./GameView";
 import { UIView } from "./UIView";
 
 export class MainView extends Phaser.GameObjects.Container {
-    #logo;
-    #emitter;
-
     constructor(scene) {
         super(scene);
         this.#build();
-        console.warn("Main View Build");
-        // lego.event.on(GameModelEvents.PlayerModelUpdate, this.#scoreUpdate, this);
+    }
+
+    update() {
+        this.gameView.update();
     }
 
     #build() {
