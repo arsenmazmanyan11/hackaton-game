@@ -21,6 +21,7 @@ export default class PreloadScene extends Phaser.Scene {
         this.loadAudio();
         this.loadSpines();
         this.loadShaders();
+        this.loadVideo();
         // this.load.tilemapTiledJSON("roots-map", "./assets/map/roots-map.json");
         // this.load.image("blue", "./assets/map/Blue.png");
     }
@@ -63,7 +64,7 @@ export default class PreloadScene extends Phaser.Scene {
         if (videos.length === 0) return;
         videos.forEach((el) => {
             const { name, path } = el;
-            this.load.video(name, path);
+            this.load.video(name, "src/" + path);
         });
     }
 

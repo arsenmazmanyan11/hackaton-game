@@ -1,7 +1,8 @@
-import { CONFIG, SPEED, TOLERANCE } from "../../constants";
+import { lego } from "@armathai/lego";
+import { TOLERANCE } from "../../constants";
+import { GameModelEvents } from "../../events/ModelEvents";
 import BackgroundView from "./BackgroundView";
 import Bullet from "./Bullet";
-import Enemy from "./Enemy";
 import PlayerView from "./PlayerView";
 
 export class GameView extends Phaser.GameObjects.Container {
@@ -11,30 +12,37 @@ export class GameView extends Phaser.GameObjects.Container {
         this.bullets = [];
 
         this.init();
+
+        lego.event.on(GameModelEvents.PlayerModelUpdate, this.#onPlayerModelUpdate, this);
+    }
+
+    #onPlayerModelUpdate(newValue, oldValue) {
+        if (!oldValue) {
+            this.#initPlayer(newValue);
+        }
     }
 
     update() {
-        this.followPointer(this.scene.input.activePointer);
-        this.bullets.forEach((b) => {
-            b.isActive && b.update();
-        });
-
-        this.#checkBulletAndEnemyCollision();
+        // this.followPointer(this.scene.input.activePointer);
+        // this.bullets.forEach((b) => {
+        //     b.isActive && b.update();
+        // });
+        // this.#checkBulletAndEnemyCollision();
     }
 
     init() {
         this.initBkg();
-        this.initPlayer();
-        this.initBullets();
-        for (let i = 0; i < 5; i++) {
-            const enemy = new Enemy(this.scene);
-            enemy.setPosition(300 * (i + 1), 300 * (i + 1));
-            this.add(enemy);
-            this.enemies.push(enemy);
-        }
-        this.scene.cameras.main.zoom = 0.5;
-        this.scene.cameras.main.startFollow(this.player);
-        // this.scene.cameras.cameras[0].zoom = 0.5;
+        // this.initPlayer();
+        // this.initBullets();
+        // for (let i = 0; i < 5; i++) {
+        //     const enemy = new Enemy(this.scene);
+        //     enemy.setPosition(300 * (i + 1), 300 * (i + 1));
+        //     this.add(enemy);
+        //     this.enemies.push(enemy);
+        // }
+        // this.scene.cameras.main.zoom = 0.5;
+        // this.scene.cameras.main.startFollow(this.player);
+        // // this.scene.cameras.cameras[0].zoom = 0.5;
     }
 
     initBkg() {
@@ -45,20 +53,19 @@ export class GameView extends Phaser.GameObjects.Container {
         this.add(this.bkg);
     }
 
-    initPlayer() {
-        this.player = new PlayerView(this.scene);
+    #initPlayer(config) {
+        this.player = new PlayerView(this.scene, config);
 
         this.add(this.player);
     }
 
     followPointer(pointer) {
-        if (!pointer.isDown) return;
-        const radiansToPointer = Phaser.Math.Angle.Between(
-            this.player.x,
-            this.player.y,
-            pointer.worldX,
-            pointer.worldY,
-        );
+        const { isDown, worldX, worldY } = pointer;
+        const { x, y } = this.player;
+        const dist = Phaser.Math.Distance.Between(worldX, worldY, x, y);
+        if (!isDown) return;
+        if (dist <= 60) return;
+        const radiansToPointer = Phaser.Math.Angle.Between(x, y, worldX, worldY);
         if (Phaser.Math.Fuzzy.Equal(radiansToPointer, 0, TOLERANCE)) {
             this.player.rotation = radiansToPointer;
         }
@@ -84,36 +91,36 @@ export class GameView extends Phaser.GameObjects.Container {
     }
 
     #shootBullet() {
-        const bullet = this.getBullet();
-        if (!bullet) return;
-        const { x } = this.player.shootingPoint;
-        bullet.visible = true;
-        bullet.x = this.player.x + Math.cos(this.player.rotation) * x;
-        bullet.y = this.player.y + (Math.sin(this.player.rotation) * this.player.height) / 2;
-        bullet.setSpeed(CONFIG.bulletSpeed);
-        bullet.setAngle(this.player.rotation);
-        bullet.rotation = this.player.rotation;
-        bullet.isActive = true;
+        // const bullet = this.getBullet();
+        // if (!bullet) return;
+        // const { x } = this.player.shootingPoint;
+        // bullet.visible = true;
+        // bullet.x = this.player.x + Math.cos(this.player.rotation) * x;
+        // bullet.y = this.player.y + (Math.sin(this.player.rotation) * this.player.height) / 2;
+        // bullet.setSpeed(CONFIG.bulletSpeed);
+        // bullet.setAngle(this.player.rotation);
+        // bullet.rotation = this.player.rotation;
+        // bullet.isActive = true;
     }
 
     #disbaleBullet(bullet) {
-        bullet.visible = false;
-        bullet.setSpeed(0);
-        bullet.isActive = false;
-        bullet.remainingDist = CONFIG.bulletDist;
+        // bullet.visible = false;
+        // bullet.setSpeed(0);
+        // bullet.isActive = false;
+        // bullet.remainingDist = CONFIG.bulletDist;
     }
 
     #checkBulletAndEnemyCollision() {
-        this.bullets.forEach((b) => {
-            if (b.isActive) {
-                this.enemies.forEach((e) => {
-                    const dist = Phaser.Math.Distance.Between(b.x, b.y, e.x, e.y);
-                    if (dist <= e.width / 2) {
-                        e.tint(0xffffff * Math.random());
-                        this.#disbaleBullet(b);
-                    }
-                });
-            }
-        });
+        // this.bullets.forEach((b) => {
+        //     if (b.isActive) {
+        //         this.enemies.forEach((e) => {
+        //             const dist = Phaser.Math.Distance.Between(b.x, b.y, e.x, e.y);
+        //             if (dist <= e.width / 2) {
+        //                 e.tint(0xffffff * Math.random());
+        //                 this.#disbaleBullet(b);
+        //             }
+        //         });
+        //     }
+        // });
     }
 }

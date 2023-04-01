@@ -291,8 +291,8 @@ async function start() {
     // await generateSpines();
     // console.log("generating shaders");
     // await generateShaders();
-    // console.log("generating videos");
-    // await generateVideos();
+    console.log("generating videos");
+    await generateVideos();
     console.log("asset generation complete");
     console.log("running the game");
 }

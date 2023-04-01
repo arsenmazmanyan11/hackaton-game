@@ -1,12 +1,32 @@
+import { lego } from "@armathai/lego";
+import { PlayerModelEvents } from "../../events/ModelEvents";
+
 export default class PlayerView extends Phaser.GameObjects.Container {
-    constructor(scene) {
+    constructor(scene, config) {
         super(scene);
+
+        const { lives, coins } = config;
+        this.lives = lives;
+        this.coins = coins;
+        this.gun = null;
+
         this.init();
-        this.circle = null;
+        // this.circle = null;
+        lego.event.on(PlayerModelEvents.GunUpdate, this.#onGunUpdate, this);
     }
 
     get shootingPoint() {
         return new Phaser.Geom.Point(this.player.width / 2, 0);
+    }
+
+    #onGunUpdate(newValue, oldValue) {
+        if (!oldValue && newValue) {
+            this.#initGun(newValue);
+        }
+    }
+
+    #initGun(config) {
+        //
     }
 
     init() {
