@@ -11,7 +11,7 @@ export class PlayerModel extends ObservableModel {
         this._speed = speed;
         this._score = 0;
 
-        this._gun = undefined;
+        this._gun = null;
         this.makeObservable();
     }
 
