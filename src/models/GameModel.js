@@ -1,13 +1,16 @@
 import { GameState } from "../constants";
 import { LEVEL_CONFIG, PLAYER_CONFIG } from "../gameConfig";
+import { STORE_ITEMS } from "../storeItemModels";
 import { ObservableModel } from "./ObservableModel";
 import { PlayerModel } from "./PlayerModel";
+import StoreModel from "./StoreModel";
 
 export class GameModel extends ObservableModel {
     constructor() {
         super("GameModel");
         this._playerModel = null;
         this._levelModel = null;
+        this._storeModel = null;
         this._level = 0;
         this._state = GameState.unknown;
         this.makeObservable();
@@ -27,6 +30,14 @@ export class GameModel extends ObservableModel {
 
     set levelModel(value) {
         this._levelModel = value;
+    }
+
+    get storeModel() {
+        return this._storeModel;
+    }
+
+    set storeModel(value) {
+        this._storeModel = value;
     }
 
     get level() {
@@ -52,10 +63,16 @@ export class GameModel extends ObservableModel {
 
     init() {
         this.#initPlayerModel();
+        this.#initStoreModel();
     }
 
     #initPlayerModel() {
         this._playerModel = new PlayerModel(PLAYER_CONFIG);
         this._playerModel.init();
+    }
+
+    #initStoreModel() {
+        this._storeModel = new StoreModel(STORE_ITEMS);
+        this._storeModel.init();
     }
 }

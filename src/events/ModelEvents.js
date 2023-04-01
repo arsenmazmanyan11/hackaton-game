@@ -1,7 +1,9 @@
 export const GameModelEvents = {
     PlayerModelUpdate: "GameModelPlayerModelUpdate",
     LevelModelUpdate: "GameModelLevelModelUpdate",
+    StoreModelUpdate: "GameModelStoreModelUpdate",
     LevelUpdate: "GameModelLevelUpdate",
+    StateUpdate: "GameModelStateUpdate",
 };
 
 export const GunModelEvents = {
@@ -13,6 +15,13 @@ export const GunModelEvents = {
 
 export const HeadModelEvents = { GameModelUpdate: "HeadModelGameModelUpdate" };
 
+export const ItemModelEvents = {
+    PriceUpdate: "ItemModelPriceUpdate",
+    ItemNameUpdate: "ItemModelItemNameUpdate",
+    IsBoughtUpdate: "ItemModelIsBoughtUpdate",
+    UpgradeLevelUpdate: "ItemModelUpgradeLevelUpdate",
+};
+
 export const LevelModelEvents = { IsCompletedUpdate: "LevelModelIsCompletedUpdate" };
 
 export const PlayerModelEvents = {
@@ -22,3 +31,5 @@ export const PlayerModelEvents = {
     GunUpdate: "PlayerModelGunUpdate",
     ScoreUpdate: "PlayerModelScoreUpdate",
 };
+
+export const StoreModelEvents = { IsShownUpdate: "StoreModelIsShownUpdate", ItemsUpdate: "StoreModelItemsUpdate" };
