@@ -57,8 +57,8 @@ export class GameModel extends ObservableModel {
     }
 
     setLevel(level) {
-        this.level = level;
-        this.levelModel.setNewConfig(LEVEL_CONFIG[this.level - 1]);
+        this._level = level;
+        this._levelModel.setNewConfig(LEVEL_CONFIG[this.level - 1]);
     }
 
     init() {

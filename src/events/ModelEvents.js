@@ -1,3 +1,13 @@
+export const EnemyModelEvents = {
+    HealthUpdate: "EnemyModelHealthUpdate",
+    CoinsUpdate: "EnemyModelCoinsUpdate",
+    SpeedUpdate: "EnemyModelSpeedUpdate",
+    EnemyNameUpdate: "EnemyModelEnemyNameUpdate",
+    IsDeadUpdate: "EnemyModelIsDeadUpdate",
+    StateUpdate: "EnemyModelStateUpdate",
+    SpawnPositionUpdate: "EnemyModelSpawnPositionUpdate",
+};
+
 export const GameModelEvents = {
     PlayerModelUpdate: "GameModelPlayerModelUpdate",
     LevelModelUpdate: "GameModelLevelModelUpdate",
@@ -22,7 +32,11 @@ export const ItemModelEvents = {
     UpgradeLevelUpdate: "ItemModelUpgradeLevelUpdate",
 };
 
-export const LevelModelEvents = { IsCompletedUpdate: "LevelModelIsCompletedUpdate" };
+export const LevelModelEvents = {
+    IsCompletedUpdate: "LevelModelIsCompletedUpdate",
+    ActiveEnemiesUpdate: "LevelModelActiveEnemiesUpdate",
+    WaveUpdate: "LevelModelWaveUpdate",
+};
 
 export const PlayerModelEvents = {
     SpeedUpdate: "PlayerModelSpeedUpdate",
