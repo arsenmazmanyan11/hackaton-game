@@ -7,3 +7,7 @@ export const setGameStateCommand = (state) => {
 export const setLevelCommand = (level) => {
     Head.gameModel.setLevel(level);
 };
+
+export const buyItemCommand = (itemName) => {
+    Head.gameModel.storeModel.buyItem(itemName);
+};

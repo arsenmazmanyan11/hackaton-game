@@ -31,6 +31,11 @@ export default class StoreModel extends ObservableModel {
         return this._items.find((item) => item.itemName === name);
     }
 
+    buyItem(name) {
+        const item = this.getItemByName(name);
+        item.isBought = true;
+    }
+
     init() {
         this._items = this._config.map((c) => {
             const item = new ItemModel(c);
