@@ -1,6 +1,4 @@
-import { lego } from "@armathai/lego";
 import { CONFIG, SPEED, TOLERANCE } from "../../constants";
-import { GameModelEvents } from "../../events/ModelEvents";
 import BackgroundView from "./BackgroundView";
 import Bullet from "./Bullet";
 import Enemy from "./Enemy";
@@ -11,8 +9,6 @@ export class GameView extends Phaser.GameObjects.Container {
         super(scene);
         this.enemies = [];
         this.bullets = [];
-
-        lego.event.on(GameModelEvents.ScoreUpdate, this.#onScoreUpdate, this);
 
         this.init();
     }
@@ -119,9 +115,5 @@ export class GameView extends Phaser.GameObjects.Container {
                 });
             }
         });
-    }
-
-    #onScoreUpdate(a, b, c) {
-        // console.warn(a, b, c);
     }
 }
