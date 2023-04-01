@@ -4,7 +4,12 @@ export const Scenes = {
     Game: "game",
 };
 
-export const SPEED = 25;
-export const ROTATION_SPEED = 1 * Math.PI; // 0.5 turn per sec, 2 sec per turn
+export const SPEED = 10;
+export const ROTATION_SPEED = Math.PI; // 0.5 turn per sec, 2 sec per turn
 export const ROTATION_SPEED_DEGREES = Phaser.Math.RadToDeg(ROTATION_SPEED);
-export const TOLERANCE = 0.02 * ROTATION_SPEED;
+export const TOLERANCE = ROTATION_SPEED;
+
+export const CONFIG = {
+    bulletDist: 3000,
+    bulletSpeed: 2,
+};

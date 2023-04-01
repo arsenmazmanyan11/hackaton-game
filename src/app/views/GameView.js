@@ -1,12 +1,16 @@
 import { lego } from "@armathai/lego";
-import { SPEED } from "../../constants";
+import { CONFIG, SPEED, TOLERANCE } from "../../constants";
 import { GameModelEvents } from "../../events/ModelEvents";
 import BackgroundView from "./BackgroundView";
+import Bullet from "./Bullet";
+import Enemy from "./Enemy";
 import PlayerView from "./PlayerView";
 
 export class GameView extends Phaser.GameObjects.Container {
     constructor(scene) {
         super(scene);
+        this.enemies = [];
+        this.bullets = [];
 
         lego.event.on(GameModelEvents.ScoreUpdate, this.#onScoreUpdate, this);
 
@@ -15,12 +19,24 @@ export class GameView extends Phaser.GameObjects.Container {
 
     update() {
         this.followPointer(this.scene.input.activePointer);
+        this.bullets.forEach((b) => {
+            b.isActive && b.update();
+        });
+
+        this.#checkBulletAndEnemyCollision();
     }
 
     init() {
         this.initBkg();
         this.initPlayer();
-
+        this.initBullets();
+        for (let i = 0; i < 5; i++) {
+            const enemy = new Enemy(this.scene);
+            enemy.setPosition(300 * (i + 1), 300 * (i + 1));
+            this.add(enemy);
+            this.enemies.push(enemy);
+        }
+        this.scene.cameras.main.zoom = 0.5;
         this.scene.cameras.main.startFollow(this.player);
         // this.scene.cameras.cameras[0].zoom = 0.5;
     }
@@ -28,13 +44,14 @@ export class GameView extends Phaser.GameObjects.Container {
     initBkg() {
         this.bkg = new BackgroundView(this.scene);
         this.bkg.on("click", () => {
-            // console.warn(12);
+            this.#shootBullet();
         });
         this.add(this.bkg);
     }
 
     initPlayer() {
         this.player = new PlayerView(this.scene);
+
         this.add(this.player);
     }
 
@@ -46,9 +63,63 @@ export class GameView extends Phaser.GameObjects.Container {
             pointer.worldX,
             pointer.worldY,
         );
-        this.player.rotation = radiansToPointer;
+        if (Phaser.Math.Fuzzy.Equal(radiansToPointer, 0, TOLERANCE)) {
+            this.player.rotation = radiansToPointer;
+        }
         this.player.x += Math.cos(radiansToPointer) * SPEED;
         this.player.y += Math.sin(radiansToPointer) * SPEED;
+        // this.player.drawCircle(0xffffff * Math.random());
+    }
+
+    initBullets() {
+        for (let i = 0; i < 50; i++) {
+            const bullet = new Bullet(this.scene, 0, 0);
+            bullet.visible = false;
+            bullet.on("distReached", () => {
+                this.#disbaleBullet(bullet);
+            });
+            this.add(bullet);
+            this.bullets.push(bullet);
+        }
+    }
+
+    getBullet() {
+        return this.bullets.find((b) => !b.isActive);
+    }
+
+    #shootBullet() {
+        const bullet = this.getBullet();
+        if (!bullet) return;
+        const { x } = this.player.shootingPoint;
+        bullet.visible = true;
+        bullet.x = this.player.x + Math.cos(this.player.rotation) * x;
+        bullet.y = this.player.y + (Math.sin(this.player.rotation) * this.player.height) / 2;
+        bullet.setSpeed(CONFIG.bulletSpeed);
+        bullet.setAngle(this.player.rotation);
+        bullet.rotation = this.player.rotation;
+        bullet.isActive = true;
+    }
+
+    #disbaleBullet(bullet) {
+        bullet.visible = false;
+        bullet.setSpeed(0);
+        bullet.isActive = false;
+        bullet.remainingDist = CONFIG.bulletDist;
+    }
+
+    #checkBulletAndEnemyCollision() {
+        this.bullets.forEach((b) => {
+            if (b.isActive) {
+                this.enemies.forEach((e) => {
+                    const dist = Phaser.Math.Distance.Between(b.x, b.y, e.x, e.y);
+                    console.log(dist);
+                    if (dist <= e.width / 2) {
+                        e.tint(0xffffff * Math.random());
+                        this.#disbaleBullet(b);
+                    }
+                });
+            }
+        });
     }
 
     #onScoreUpdate(a, b, c) {

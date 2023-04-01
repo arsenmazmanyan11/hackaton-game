@@ -19,12 +19,6 @@ const config = {
         autoCenter: Phaser.Scale.CENTER_BOTH,
         mode: Phaser.Scale.FIT,
     },
-    physics: {
-        default: "arcade",
-        arcade: {
-            gravity: { y: 500 },
-        },
-    },
     plugins: {
         scene: [
             {
