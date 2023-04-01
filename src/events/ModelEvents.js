@@ -36,6 +36,7 @@ export const LevelModelEvents = {
     IsCompletedUpdate: "LevelModelIsCompletedUpdate",
     ActiveEnemiesUpdate: "LevelModelActiveEnemiesUpdate",
     WaveUpdate: "LevelModelWaveUpdate",
+    BkgUpdate: "LevelModelBkgUpdate",
 };
 
 export const PlayerModelEvents = {

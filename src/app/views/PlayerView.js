@@ -19,6 +19,10 @@ export default class PlayerView extends Phaser.GameObjects.Container {
         return new Phaser.Geom.Point(this.player.width / 2, 0);
     }
 
+    setTint(color) {
+        this.player.tint = color;
+    }
+
     #onGunUpdate(newValue, oldValue) {
         if (!oldValue && newValue) {
             this.#initGun(newValue);

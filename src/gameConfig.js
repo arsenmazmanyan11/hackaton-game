@@ -11,13 +11,13 @@ export const PLAYER_CONFIG = {
     bulletsCount: 50,
     bulletDistance: 300, // TO CHANGE
     bulletSpeed: 5, // TO CHANGE
-    speed: 10, // TO CHANGE
+    speed: 15, // TO CHANGE
 };
 
 // TO CHANGE
 export const ENEMY_TYPE = {
-    type1: {
-        name: "enemy-type1",
+    cancer: {
+        name: "cancer",
         health: 100,
         coins: 20,
         speed: 10,
@@ -75,7 +75,7 @@ export const LEVEL_CONFIG = [
     {
         name: "desert",
         bkg: "desert.jpg",
-        enemy: ENEMY_TYPE.type1,
+        enemy: ENEMY_TYPE.cancer,
         enemiesCount: 50,
         enemiesRespawnCounts: [10, 15, 25],
         respawnTimeout: 10000,

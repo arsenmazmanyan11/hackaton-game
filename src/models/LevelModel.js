@@ -51,6 +51,10 @@ export class LevelModel extends ObservableModel {
         this._bkg = value;
     }
 
+    startWave() {
+        this.setActiveEnemies();
+    }
+
     removeEnemy(uuid) {
         const index = this._activeEnemies.indexOf((e) => e.uuid === uuid);
         const enemy = this._activeEnemies.find((e) => e.uuid === uuid);
@@ -75,16 +79,19 @@ export class LevelModel extends ObservableModel {
         this._wave++;
         if (this._wave >= this._enemiesRespawnCounts.length && !this._boss) {
             this._isCompleted = true;
-        } else if (this._wave >= this._enemiesRespawnCounts.length && this._boss) {
-            this.showBoss();
         }
+        // else if (this._wave >= this._enemiesRespawnCounts.length && this._boss) {
+        //     this.showBoss();
+        // }
         const spawnPos = this._enemiesRespawnPositions[this.wave];
         const count = this._enemiesRespawnCounts[this._wave];
-        this._activeEnemies = this._enemies.splice(0, count);
-        this._activeEnemies.forEach((e) => {
+        const enemies = this._enemies.splice(0, count);
+        enemies.forEach((e) => {
             e.spawnPosition = spawnPos;
             e.state = EnemyState.active;
         });
+
+        this._activeEnemies = [...enemies];
     }
 
     setNewConfig(config) {
@@ -114,6 +121,7 @@ export class LevelModel extends ObservableModel {
         const arr = [];
         for (let i = 0; i < this._enemiesCount; i++) {
             const enemy = new EnemyModel(enemyConfig);
+            enemy.init();
             arr.push(enemy);
         }
         this._enemies = [...arr];

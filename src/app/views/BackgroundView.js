@@ -5,7 +5,7 @@ export default class BackgroundView extends Phaser.GameObjects.Container {
     }
 
     init() {
-        this.map = this.scene.add.tileSprite(0, 0, 3000, 3000, "bg.jpg");
+        this.map = this.scene.add.tileSprite(0, 0, 9000, 9000, "bg.jpg");
         this.add(this.map);
     }
 

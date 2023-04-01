@@ -64,6 +64,10 @@ export class GameModel extends ObservableModel {
         this._levelModel = newLevel;
     }
 
+    startWave() {
+        this._levelModel.startWave();
+    }
+
     init() {
         this.#initPlayerModel();
         this.#initStoreModel();

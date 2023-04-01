@@ -16,12 +16,10 @@ export default class BootScene extends Phaser.Scene {
     }
 
     #initLogo() {
-        console.warn(this);
         const { width, height } = this.scale.displaySize;
         const logo = this.add.sprite(width / 2, height / 2, "logo.png");
         logo.setOrigin(1);
         logo.setPosition(width / 2, height / 2);
-        // this.add(logo);
     }
 
     #initButton() {

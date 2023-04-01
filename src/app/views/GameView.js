@@ -1,8 +1,10 @@
 import { lego } from "@armathai/lego";
 import { TOLERANCE } from "../../constants";
-import { GameModelEvents } from "../../events/ModelEvents";
+import { GameModelEvents, LevelModelEvents } from "../../events/ModelEvents";
+import { PLAYER_CONFIG } from "../../gameConfig";
 import BackgroundView from "./BackgroundView";
 import Bullet from "./Bullet";
+import Enemy from "./Enemy";
 import PlayerView from "./PlayerView";
 
 export class GameView extends Phaser.GameObjects.Container {
@@ -15,6 +17,7 @@ export class GameView extends Phaser.GameObjects.Container {
 
         lego.event.on(GameModelEvents.PlayerModelUpdate, this.#onPlayerModelUpdate, this);
         lego.event.on(GameModelEvents.LevelModelUpdate, this.#onLevelModelUpdate, this);
+        lego.event.on(LevelModelEvents.ActiveEnemiesUpdate, this.#onActiveEnemiesUpdate, this);
     }
 
     #onPlayerModelUpdate(newValue, oldValue) {
@@ -24,23 +27,43 @@ export class GameView extends Phaser.GameObjects.Container {
     }
 
     #onLevelModelUpdate(newValue, oldValue) {
-        console.log(newValue, oldValue);
         const { bkg } = newValue;
-        console.warn(bkg);
         this.bkg.changeTexture(bkg);
     }
 
+    #onActiveEnemiesUpdate(enemies) {
+        this.enemies = enemies.map((e) => {
+            const { x, y } = getEnemySpawnPosition(e.spawnPosition);
+            const dir = Phaser.Math.Angle.Between(x, y, this.player.x, this.player.y);
+            const enemy = new Enemy(this.scene, e);
+            enemy.setPosition(x, y);
+            enemy.setScale(0.4);
+            enemy.setSpeed(Math.random() * 10);
+            enemy.setAngle(dir);
+            this.add(enemy);
+            return enemy;
+        });
+    }
+
     update() {
-        // this.followPointer(this.scene.input.activePointer);
+        this.followPointer(this.scene.input.activePointer);
         // this.bullets.forEach((b) => {
         //     b.isActive && b.update();
         // });
         // this.#checkBulletAndEnemyCollision();
+        if (this.enemies.length !== 0) {
+            this.enemies.forEach((e) => {
+                const dir = Phaser.Math.Angle.Between(e.x, e.y, this.player.x, this.player.y);
+
+                e.setAngle(dir);
+                e.update();
+            });
+            this.#checkEnemyAndPlayerCollision();
+        }
     }
 
     init() {
         this.initBkg();
-        // this.initPlayer();
         // this.initBullets();
         // for (let i = 0; i < 5; i++) {
         //     const enemy = new Enemy(this.scene);
@@ -48,31 +71,19 @@ export class GameView extends Phaser.GameObjects.Container {
         //     this.add(enemy);
         //     this.enemies.push(enemy);
         // }
-        this.scene.cameras.main.zoom = 0.15;
-
-        // this.scene.time.delayedCall(
-        //     4000,
-        //     () => {
-        //         this.bkg.changeTexture("desert.jpg");
-        //     },
-        //     this,
-        // );
-        // this.scene.cameras.main.startFollow(this.player);
-        // // this.scene.cameras.cameras[0].zoom = 0.5;
+        this.scene.cameras.main.zoom = 0.35;
     }
 
     initBkg() {
         this.bkg = new BackgroundView(this.scene);
-        this.bkg.on("click", () => {
-            this.#shootBullet();
-        });
         this.add(this.bkg);
     }
 
     #initPlayer(config) {
         this.player = new PlayerView(this.scene, config);
-
+        this.player.setPosition(200, 500);
         this.add(this.player);
+        this.scene.cameras.main.startFollow(this.player);
     }
 
     followPointer(pointer) {
@@ -85,8 +96,8 @@ export class GameView extends Phaser.GameObjects.Container {
         if (Phaser.Math.Fuzzy.Equal(radiansToPointer, 0, TOLERANCE)) {
             this.player.rotation = radiansToPointer;
         }
-        this.player.x += Math.cos(radiansToPointer) * SPEED;
-        this.player.y += Math.sin(radiansToPointer) * SPEED;
+        this.player.x += Math.cos(radiansToPointer) * PLAYER_CONFIG.speed;
+        this.player.y += Math.sin(radiansToPointer) * PLAYER_CONFIG.speed;
         // this.player.drawCircle(0xffffff * Math.random());
     }
 
@@ -139,4 +150,27 @@ export class GameView extends Phaser.GameObjects.Container {
         //     }
         // });
     }
+
+    #checkEnemyAndPlayerCollision() {
+        this.enemies.forEach((e) => {
+            // if (b.isActive) {
+            // this.enemies.forEach((e) => {
+            const dist = Phaser.Math.Distance.Between(e.x, e.y, this.player.x, this.player.y);
+            if (dist <= 50) {
+                this.player.setTint(0xffffff * Math.random());
+                // this.#disbaleBullet(e);
+                this.player.alpha = 0.5;
+            } else {
+                this.player.alpha = 1;
+            }
+            // });
+            // }
+        });
+    }
 }
+
+const getEnemySpawnPosition = (pos) => {
+    const deltX = Math.random() * 200 - 100;
+    const deltY = Math.random() * 200 - 100;
+    return { x: pos.x + deltX, y: pos.y + deltY };
+};
