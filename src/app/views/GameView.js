@@ -112,7 +112,6 @@ export class GameView extends Phaser.GameObjects.Container {
             if (b.isActive) {
                 this.enemies.forEach((e) => {
                     const dist = Phaser.Math.Distance.Between(b.x, b.y, e.x, e.y);
-                    console.log(dist);
                     if (dist <= e.width / 2) {
                         e.tint(0xffffff * Math.random());
                         this.#disbaleBullet(b);
