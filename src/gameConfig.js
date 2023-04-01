@@ -1,19 +1,20 @@
 export const GUN_TYPE = {
-    basic: 4,
-    dual: 1,
-    triple: 2,
+    basic: 1,
+    dual: 2,
+    triple: 3,
+    penta: 5,
 };
 
 export const PLAYER_CONFIG = {
-    lives: 3,
     initalCoins: 100,
     gunType: GUN_TYPE.basic,
     bulletsCount: 50,
-    bulletDistance: 300,
-    bulletSpeed: 5,
-    speed: 10,
+    bulletDistance: 300, // TO CHANGE
+    bulletSpeed: 5, // TO CHANGE
+    speed: 10, // TO CHANGE
 };
 
+// TO CHANGE
 export const ENEMY_TYPE = {
     type1: {
         name: "enemy-type1",
@@ -47,6 +48,7 @@ export const ENEMY_TYPE = {
     },
 };
 
+// TO CHANGE
 export const BOSS_TYPE = {
     type1: {
         name: "boss-type1",
@@ -68,13 +70,15 @@ export const BOSS_TYPE = {
     },
 };
 
+// TO CHANGE
 export const LEVEL_CONFIG = [
     {
         name: "desert",
-        bkg: "bg.jpg",
-        enemies: [ENEMY_TYPE.type1, ENEMY_TYPE.type2, ENEMY_TYPE.type3],
+        bkg: "desert.jpg",
+        enemy: ENEMY_TYPE.type1,
         enemiesCount: 50,
         enemiesRespawnCounts: [10, 15, 25],
+        respawnTimeout: 10000,
         enemiesRespawnPositions: [
             { x: 0, y: 0 },
             { x: 100, y: 100 },
@@ -84,15 +88,15 @@ export const LEVEL_CONFIG = [
     {
         name: "desert",
         bkg: "bg.jpg",
-        enemies: [ENEMY_TYPE.type1, ENEMY_TYPE.type2, ENEMY_TYPE.type3],
+        enemy: ENEMY_TYPE.type2,
         enemiesCount: 50,
         enemiesRespawnCounts: [10, 15, 25],
+        respawnTimeout: 10000,
         enemiesRespawnPositions: [
             { x: 0, y: 0 },
             { x: 100, y: 100 },
             { x: 200, y: 200 },
         ],
         boss: BOSS_TYPE.type1,
-        bossSpawnPosition: { x: 50, y: 50 },
     },
 ];

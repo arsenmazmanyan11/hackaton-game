@@ -19,15 +19,7 @@ const config = {
         autoCenter: Phaser.Scale.CENTER_BOTH,
         mode: Phaser.Scale.FIT,
     },
-    plugins: {
-        scene: [
-            {
-                key: "SpinePlugin",
-                plugin: window.SpinePlugin,
-                mapping: "spine",
-            },
-        ],
-    },
+    backgroundColor: "#4488aa",
     antialias: true,
 };
 

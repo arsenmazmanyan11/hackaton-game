@@ -41,7 +41,7 @@ export default class PlayerView extends Phaser.GameObjects.Container {
     // }
 
     initPlayer() {
-        this.player = this.scene.add.image(0, 0, "logo.png");
+        this.player = this.scene.add.image(0, 0, "duck.png");
         this.add(this.player);
     }
 }

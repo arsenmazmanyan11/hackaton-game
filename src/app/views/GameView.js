@@ -14,12 +14,18 @@ export class GameView extends Phaser.GameObjects.Container {
         this.init();
 
         lego.event.on(GameModelEvents.PlayerModelUpdate, this.#onPlayerModelUpdate, this);
+        lego.event.on(GameModelEvents.LevelModelUpdate, this.#onLevelModelUpdate, this);
     }
 
     #onPlayerModelUpdate(newValue, oldValue) {
         if (!oldValue) {
             this.#initPlayer(newValue);
         }
+    }
+
+    #onLevelModelUpdate(newValue, oldValue) {
+        console.log(newValue, oldValue);
+        // this.bkg.changeTexture()
     }
 
     update() {
@@ -40,7 +46,15 @@ export class GameView extends Phaser.GameObjects.Container {
         //     this.add(enemy);
         //     this.enemies.push(enemy);
         // }
-        // this.scene.cameras.main.zoom = 0.5;
+        this.scene.cameras.main.zoom = 0.15;
+
+        // this.scene.time.delayedCall(
+        //     4000,
+        //     () => {
+        //         this.bkg.changeTexture("desert.jpg");
+        //     },
+        //     this,
+        // );
         // this.scene.cameras.main.startFollow(this.player);
         // // this.scene.cameras.cameras[0].zoom = 0.5;
     }

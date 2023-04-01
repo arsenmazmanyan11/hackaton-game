@@ -5,12 +5,11 @@ export default class BackgroundView extends Phaser.GameObjects.Container {
     }
 
     init() {
-        this.map = this.scene.add.sprite(0, 0, "bg.jpg");
+        this.map = this.scene.add.tileSprite(0, 0, 3000, 3000, "bg.jpg");
         this.add(this.map);
+    }
 
-        this.map.setInteractive();
-        this.map.on(Phaser.Input.Events.POINTER_DOWN, () => {
-            this.emit("click");
-        });
+    changeTexture(texture) {
+        this.map.setTexture(texture);
     }
 }

@@ -1,4 +1,4 @@
-export default class Enemy extends Phaser.Physics.Arcade.Sprite {
+export default class Enemy extends Phaser.GameObjects.Sprite {
     constructor(scene) {
         super(scene, 0, 0, "enemy.png");
     }

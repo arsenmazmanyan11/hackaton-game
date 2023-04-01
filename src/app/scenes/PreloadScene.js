@@ -6,7 +6,6 @@ import { spines } from "../../assets/assetNames/spines";
 import { spriteSheets } from "../../assets/assetNames/spriteSheets";
 import { videos } from "../../assets/assetNames/videos";
 import { Scenes } from "../../constants";
-import { initModelsCommand } from "../commands/InitModelsCommand";
 import { mapCommands } from "../commands/MapUnmapCommands";
 
 export default class PreloadScene extends Phaser.Scene {
@@ -33,8 +32,7 @@ export default class PreloadScene extends Phaser.Scene {
     create() {
         console.log("Asset loading is completed");
         lego.command.execute(mapCommands);
-        this.scene.start(Scenes.Game);
-        lego.command.execute(initModelsCommand);
+        this.scene.start(Scenes.Boot);
     }
 
     loadAssets() {
