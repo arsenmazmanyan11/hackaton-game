@@ -1,3 +1,4 @@
+import { PLAYER_CONFIG } from "../../gameConfig";
 import Vector from "./Vector";
 
 export default class Bullet extends Phaser.GameObjects.Sprite {
@@ -7,7 +8,7 @@ export default class Bullet extends Phaser.GameObjects.Sprite {
         this.isActive = false;
         this.direction = null;
         // this.remainingDist = CONFIG.bulletDist;
-        this.remainingDist = 400;
+        this.remainingDist = PLAYER_CONFIG.bulletDistance;
         this.velocity = new Vector(0, 0);
         this.velocity.setLength(speed);
         this.velocity.setAngle(direction);

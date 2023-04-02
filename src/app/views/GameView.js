@@ -163,7 +163,7 @@ export class GameView extends Phaser.GameObjects.Container {
         bullet.visible = false;
         bullet.setSpeed(0);
         bullet.isActive = false;
-        bullet.remainingDist = PLAYER_CONFIG.bulletDist;
+        bullet.remainingDist = PLAYER_CONFIG.bulletDistance;
     }
 
     #checkBulletAndEnemyCollision() {
@@ -184,8 +184,10 @@ export class GameView extends Phaser.GameObjects.Container {
     #checkEnemyAndPlayerCollision() {
         this.enemies.forEach((e) => {
             const dist = Phaser.Math.Distance.Between(e.x, e.y, this.player.x, this.player.y);
-            if (dist <= 50) {
+            if (dist <= 50 && e.cooldown <= 0) {
                 this.player.setTint(0xffffff * Math.random());
+                lego.event.emit(GameEvents.PlayerHit, e.damage);
+                e.hitPlayer();
                 this.player.alpha = 0.5;
             }
             if (dist <= 500) {

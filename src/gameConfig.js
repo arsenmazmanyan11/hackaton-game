@@ -9,7 +9,7 @@ export const PLAYER_CONFIG = {
     initialCoins: 10000,
     gunType: GUN_TYPE.basic,
     bulletsCount: 50,
-    bulletDistance: 300, // TO CHANGE
+    bulletDistance: 1000, // TO CHANGE
     bulletSpeed: 5, // TO CHANGE
     speed: 15, // TO CHANGE
 };
@@ -21,30 +21,40 @@ export const ENEMY_TYPE = {
         health: 20,
         coins: 20,
         speed: 10,
+        damage: 10,
+        hitInterval: 1, //seconds
     },
     type2: {
         name: "enemy-type2",
         health: 200,
         coins: 30,
         speed: 11,
+        damage: 10,
+        hitInterval: 0.5,
     },
     type3: {
         name: "enemy-type3",
         health: 300,
         coins: 40,
         speed: 12,
+        damage: 10,
+        hitInterval: 1,
     },
     type4: {
         name: "enemy-type4",
         health: 400,
         coins: 50,
         speed: 13,
+        damage: 10,
+        hitInterval: 1,
     },
     type5: {
         name: "enemy-type5",
         health: 500,
         coins: 60,
         speed: 13,
+        damage: 10,
+        hitInterval: 1,
     },
 };
 
@@ -55,18 +65,24 @@ export const BOSS_TYPE = {
         health: 20,
         coins: 100,
         speed: 11,
+        damage: 100,
+        hitInterval: 0.3,
     },
     type2: {
         name: "boss-type2",
         health: 2000,
         coins: 200,
         speed: 22,
+        damage: 100,
+        hitInterval: 0.3,
     },
     type3: {
         name: "boss-type3",
         health: 3000,
         coins: 300,
         speed: 33,
+        damage: 100,
+        hitInterval: 0.3,
     },
 };
 

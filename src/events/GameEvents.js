@@ -3,6 +3,7 @@ export const GameEvents = {
     EnemyDied: "EnemyDied",
     ShowWinPopup: "ShowWinPopup",
     ShowLosePopup: "ShowLosePopup",
+    PlayerHit: "PlayerHit",
 };
 export const MainViewEvents = { ViewsReady: "MainViewEventsViewsReady" };
 

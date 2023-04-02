@@ -9,6 +9,8 @@ export class PlayerModel extends ObservableModel {
         this._coins = 0;
         this._speed = speed;
         this._score = 0;
+        this._isDead = false;
+        this._lastCoins = 0;
 
         this._gun = null;
         this.makeObservable();
@@ -46,6 +48,37 @@ export class PlayerModel extends ObservableModel {
         this._score = value;
     }
 
+    get isDead() {
+        return this._isDead;
+    }
+
+    set isDead(value) {
+        this._isDead = value;
+    }
+
+    get lastCoins() {
+        return this._lastCoins;
+    }
+
+    set lastCoins(value) {
+        this._lastCoins = value;
+    }
+
+    nextLevel() {
+        this._lastCoins = this.coins;
+    }
+
+    restart() {
+        this._coins = this._lastCoins;
+    }
+
+    takeDamage(damage) {
+        this.coins -= damage;
+        if (this.coins <= 0) {
+            this._isDead = true;
+        }
+    }
+
     increaseScoreBy(value) {
         this.score += value;
     }
@@ -74,6 +107,7 @@ export class PlayerModel extends ObservableModel {
         const { initialCoins, gunType, bulletsCount, bulletDistance, bulletSpeed } = this._config;
         const gunConfig = { gunType, bulletsCount, bulletDistance, bulletSpeed };
         this._coins = initialCoins;
+        this._lastCoins = this._coins;
         this.#initGunModel(gunConfig);
     }
 

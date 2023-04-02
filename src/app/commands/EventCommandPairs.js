@@ -1,9 +1,11 @@
 import { ForegroundEvents, GameEvents, MainViewEvents, StorePopupEvents } from "../../events/GameEvents";
-import { LevelModelEvents, WaveModelEvents } from "../../events/ModelEvents";
+import { LevelModelEvents, PlayerModelEvents, WaveModelEvents } from "../../events/ModelEvents";
 import {
     enemyDiedCommand,
     enemyHitCommand,
     onItemClickCommand,
+    onPlayerDeadCommand,
+    playerHitCommand,
     restartCurrentLevelCommand,
     startNextLevelCommand,
 } from "./GameModelCommands";
@@ -42,5 +44,13 @@ export const eventCommandPairs = [
     {
         event: StorePopupEvents.ItemClick,
         command: onItemClickCommand,
+    },
+    {
+        event: GameEvents.PlayerHit,
+        command: playerHitCommand,
+    },
+    {
+        event: PlayerModelEvents.IsDeadUpdate,
+        command: onPlayerDeadCommand,
     },
 ];

@@ -58,13 +58,20 @@ export class GameModel extends ObservableModel {
         this._state = value;
     }
 
+    damagePlayer(damage) {
+        this._playerModel.takeDamage(damage);
+    }
+
     startNextLevel() {
+        this._playerModel.nextLevel();
+
         this._level += 1;
         this._currentLevel = this._levels[this._level];
         this._currentLevel.startNextWave();
     }
 
     restartCurrentLevel() {
+        this._playerModel.restart();
         this._currentLevel = this._levels[this._level];
         this._currentLevel.startFromZero();
     }

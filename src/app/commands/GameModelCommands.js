@@ -1,3 +1,4 @@
+import { GameState } from "../../constants";
 import Head from "../../models/HeadModel";
 
 export const setGameStateCommand = (state) => {
@@ -22,6 +23,15 @@ export const enemyHitCommand = (uuid, damage = 100) => {
 
 export const enemyDiedCommand = (uuid) => {
     Head.gameModel.currentLevel.removeEnemy(uuid);
+};
+
+export const playerHitCommand = (damage) => {
+    Head.gameModel.damagePlayer(damage);
+};
+
+export const onPlayerDeadCommand = () => {
+    Head.gameModel.state = GameState.levelLose;
+    // Head.gameModel.damagePlayer(damage);
 };
 
 export const onItemClickCommand = (name) => {

@@ -39,6 +39,7 @@ export const PlayerModelEvents = {
     CoinsUpdate: "PlayerModelCoinsUpdate",
     GunUpdate: "PlayerModelGunUpdate",
     ScoreUpdate: "PlayerModelScoreUpdate",
+    IsDeadUpdate: "PlayerModelIsDeadUpdate",
 };
 
 export const StoreModelEvents = { IsShownUpdate: "StoreModelIsShownUpdate", ItemsUpdate: "StoreModelItemsUpdate" };

@@ -8,9 +8,11 @@ export default class EnemyModel extends ObservableModel {
         this._health = config.health;
         this._coins = config.coins;
         this._speed = config.speed;
+        this._damage = config.damage;
         this._enemyName = config.name;
         this._state = EnemyState.unknown;
         this._isDead = false;
+        this._hitInterval = config.hitInterval;
         this._spawnPosition = config.spawnPosition;
 
         this.makeObservable();
@@ -18,6 +20,14 @@ export default class EnemyModel extends ObservableModel {
 
     get health() {
         return this._health;
+    }
+
+    get hitInterval() {
+        return this._hitInterval;
+    }
+
+    get damage() {
+        return this._damage;
     }
 
     set health(value) {
