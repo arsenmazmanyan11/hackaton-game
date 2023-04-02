@@ -6,7 +6,7 @@ import {
     MORZH_BOSS_ANIM,
     PENGUIN_ANIM,
 } from "./animsConfig";
-import { FIRST_LEVEL_BACKGROUND_ITEMS } from "./bkgItems";
+import { FIRST_LEVEL_BACKGROUND_ITEMS, SECOND_LEVEL_BACKGROUND_ITEMS, THIRD_LEVEL_BACKGROUND_ITEMS } from "./bkgItems";
 
 export const GUN_TYPE = {
     basic: "gun1",

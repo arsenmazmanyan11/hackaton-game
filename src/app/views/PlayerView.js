@@ -8,6 +8,12 @@ import {
     PENGUIN_ANIM,
     PLAYER_P1_IDLE,
     PLAYER_P1_WALK,
+    PLAYER_P2_IDLE,
+    PLAYER_P2_WALK,
+    PLAYER_P3_IDLE,
+    PLAYER_P3_WALK,
+    PLAYER_P4_IDLE,
+    PLAYER_P4_WALK,
 } from "../../animsConfig";
 import { PlayerModelEvents } from "../../events/ModelEvents";
 
@@ -44,9 +50,10 @@ export default class PlayerView extends Phaser.GameObjects.Container {
     }
 
     #onGunUpdate(newValue, oldValue) {
-        if (!oldValue && newValue) {
-            this.#initGun(newValue);
-        }
+        console.warn(newValue, oldValue);
+        // if (!oldValue && newValue) {
+        // this.#initGun(newValue);
+        // }
     }
 
     #initGun(config) {
@@ -77,11 +84,17 @@ export default class PlayerView extends Phaser.GameObjects.Container {
             PENGUIN_ANIM,
             PLAYER_P1_WALK,
             PLAYER_P1_IDLE,
+            PLAYER_P2_WALK,
+            PLAYER_P2_IDLE,
+            PLAYER_P3_WALK,
+            PLAYER_P3_IDLE,
+            PLAYER_P4_WALK,
+            PLAYER_P4_IDLE,
         ].forEach((c) => {
             this.scene.anims.create(c);
         });
 
-        this.player = this.scene.add.sprite(0, 0, "duck", "idle-1-p1.png").play("idle-p1");
+        this.player = this.scene.add.sprite(0, 0, "duck-1", "idle-1-p1.png").play("idle-p1");
 
         this.add(this.player);
     }

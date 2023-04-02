@@ -1,4 +1,3 @@
-import { lego, legoLogger } from "@armathai/lego";
 import "phaser";
 import "phaser/plugins/spine/dist/SpinePlugin";
 import { Game } from "./game";
@@ -24,6 +23,6 @@ const config = {
 };
 
 window.addEventListener("load", () => {
-    legoLogger.start(lego, Object.freeze({}));
+    // legoLogger.start(lego, Object.freeze({}));
     new Game(config);
 });

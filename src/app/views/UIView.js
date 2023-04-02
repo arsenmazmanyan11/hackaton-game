@@ -12,7 +12,7 @@ export class UIView extends Phaser.GameObjects.Container {
     }
 
     init() {
-        // this.initCoinsCounter();
+        this.initCoinsCounter();
         //TODO REMOVE
         // this.initStoreButton();
         // this.initWinButton();

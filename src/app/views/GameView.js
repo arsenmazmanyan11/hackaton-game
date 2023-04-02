@@ -21,12 +21,7 @@ export class GameView extends Phaser.GameObjects.Container {
         lego.event.on(LevelModelEvents.CurrentWaveUpdate, this.#onCurrentWaveUpdate, this);
         lego.event.on(EnemyModelEvents.IsDeadUpdate, this.#onEnemyDeadUpdate, this);
         lego.event.on(PlayerModelEvents.IsDeadUpdate, this.#onPlayerDeadUpdate, this);
-        lego.event.on(PlayerModelEvents.GunUpdate, this.#onPlayerGunUpdate, this);
         lego.event.on(GameModelEvents.StateUpdate, this.#onGameStateUpdate, this);
-    }
-
-    #onPlayerGunUpdate(newGun) {
-        console.warn(newGun);
     }
 
     #onGameStateUpdate(newState, oldState) {
@@ -85,7 +80,7 @@ export class GameView extends Phaser.GameObjects.Container {
             const dir = Phaser.Math.Angle.Between(x, y, this.player.x, this.player.y);
             const enemy = new Enemy(this.scene, e);
             enemy.setPosition(x, y);
-            enemy.setSpeed(Math.random() * 10);
+            enemy.setSpeed(e.speed + (Math.random() * 6 - 3));
             enemy.setAngle(dir);
             enemy.setScale(e.scale);
             this.add(enemy);
@@ -105,8 +100,6 @@ export class GameView extends Phaser.GameObjects.Container {
 
     update() {
         if (this.state === GameState.levelLose || this.state === GameState.levelWin) return;
-        // TODO REMOVE
-        // return;
         this.player.cooldown -= 1 / 60;
         this.followPointer(this.scene.input.activePointer);
         this.bullets.forEach((b) => {
@@ -126,6 +119,7 @@ export class GameView extends Phaser.GameObjects.Container {
     init() {
         this.initBkg();
         this.scene.cameras.main.zoom = 0.35;
+        // this.scene.cameras.main.setBounds(0, 0, 3000, 2000);
     }
 
     initBkg() {
@@ -143,7 +137,12 @@ export class GameView extends Phaser.GameObjects.Container {
     followPointer(pointer) {
         const { isDown, worldX, worldY } = pointer;
         const { x, y } = this.player;
-        const dist = Phaser.Math.Distance.Between(worldX, worldY, x, y);
+        if (x <= -3000 || x >= 3000 || y >= 3000 || y <= -3000) {
+            this.scene.cameras.main.stopFollow(this.player);
+        } else {
+            this.scene.cameras.main.startFollow(this.player);
+        }
+        // const dist = Phaser.Math.Distance.Between(worldX, worldY, x, y);
         if (!isDown) {
             this.player.playAnimation("idle-p1");
             return;
@@ -158,7 +157,6 @@ export class GameView extends Phaser.GameObjects.Container {
         this.player.x += Math.cos(radiansToPointer) * PLAYER_CONFIG.speed;
         this.player.y += Math.sin(radiansToPointer) * PLAYER_CONFIG.speed;
         this.player.playAnimation("walk-p1");
-        // this.player.drawCircle(0xffffff * Math.random());
     }
 
     initBullets() {
@@ -241,7 +239,7 @@ export class GameView extends Phaser.GameObjects.Container {
 }
 
 const getEnemySpawnPosition = (pos) => {
-    const deltX = Math.random() * 200 - 100;
-    const deltY = Math.random() * 200 - 100;
+    const deltX = Math.random() * 600 - 300;
+    const deltY = Math.random() * 600 - 300;
     return { x: pos.x + deltX, y: pos.y + deltY };
 };

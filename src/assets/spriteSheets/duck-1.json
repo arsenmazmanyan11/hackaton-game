@@ -1,7 +1,7 @@
 {
 	"textures": [
 		{
-			"image": "duck.png",
+			"image": "duck-1.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 660,
@@ -14,12 +14,12 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 512,
-						"h": 547
+						"w": 216,
+						"h": 261
 					},
 					"spriteSourceSize": {
-						"x": 215,
-						"y": 130,
+						"x": 1,
+						"y": 0,
 						"w": 214,
 						"h": 261
 					},
@@ -35,12 +35,12 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 512,
-						"h": 547
+						"w": 216,
+						"h": 261
 					},
 					"spriteSourceSize": {
-						"x": 215,
-						"y": 134,
+						"x": 1,
+						"y": 0,
 						"w": 214,
 						"h": 261
 					},
@@ -56,12 +56,12 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 512,
-						"h": 547
+						"w": 216,
+						"h": 261
 					},
 					"spriteSourceSize": {
-						"x": 215,
-						"y": 130,
+						"x": 1,
+						"y": 0,
 						"w": 214,
 						"h": 260
 					},
@@ -77,12 +77,12 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 512,
-						"h": 547
+						"w": 216,
+						"h": 257
 					},
 					"spriteSourceSize": {
-						"x": 215,
-						"y": 134,
+						"x": 1,
+						"y": 0,
 						"w": 214,
 						"h": 257
 					},
@@ -98,12 +98,12 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 512,
-						"h": 547
+						"w": 216,
+						"h": 257
 					},
 					"spriteSourceSize": {
-						"x": 215,
-						"y": 134,
+						"x": 1,
+						"y": 0,
 						"w": 214,
 						"h": 257
 					},
@@ -119,12 +119,12 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 512,
-						"h": 547
+						"w": 216,
+						"h": 257
 					},
 					"spriteSourceSize": {
-						"x": 215,
-						"y": 134,
+						"x": 1,
+						"y": 0,
 						"w": 214,
 						"h": 256
 					},

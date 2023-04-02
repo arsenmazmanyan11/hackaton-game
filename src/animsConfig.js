@@ -73,9 +73,9 @@ export const MORZH_BOSS_ANIM = {
 export const PLAYER_P1_WALK = {
     key: "walk-p1",
     frames: [
-        { key: "duck", frame: "walk-1-p1.png" },
-        { key: "duck", frame: "walk-2-p1.png" },
-        { key: "duck", frame: "walk-3-p1.png" },
+        { key: "duck-1", frame: "walk-1-p1.png" },
+        { key: "duck-1", frame: "walk-2-p1.png" },
+        { key: "duck-1", frame: "walk-3-p1.png" },
     ],
     frameRate: 8,
     repeat: -1,
@@ -84,9 +84,76 @@ export const PLAYER_P1_WALK = {
 export const PLAYER_P1_IDLE = {
     key: "idle-p1",
     frames: [
-        { key: "duck", frame: "idle-1-p1.png" },
-        { key: "duck", frame: "idle-2-p1.png" },
-        { key: "duck", frame: "idle-3-p1.png" },
+        { key: "duck-1", frame: "idle-1-p1.png" },
+        { key: "duck-1", frame: "idle-2-p1.png" },
+        { key: "duck-1", frame: "idle-3-p1.png" },
+        { key: "duck-1", frame: "idle-3-p1.png" },
+    ],
+    frameRate: 8,
+    repeat: -1,
+};
+
+export const PLAYER_P2_WALK = {
+    key: "walk-p2",
+    frames: [
+        { key: "duck-2", frame: "walk-1-p2.png" },
+        { key: "duck-2", frame: "walk-2-p2.png" },
+        { key: "duck-2", frame: "walk-3-p2.png" },
+    ],
+    frameRate: 8,
+    repeat: -1,
+};
+
+export const PLAYER_P2_IDLE = {
+    key: "idle-p2",
+    frames: [
+        { key: "duck-2", frame: "idle-1-p2.png" },
+        { key: "duck-2", frame: "idle-2-p2.png" },
+        { key: "duck-2", frame: "idle-3-p2.png" },
+    ],
+    frameRate: 8,
+    repeat: -1,
+};
+
+export const PLAYER_P3_WALK = {
+    key: "walk-p3",
+    frames: [
+        { key: "duck-3", frame: "walk-1-p3.png" },
+        { key: "duck-3", frame: "walk-2-p3.png" },
+        { key: "duck-3", frame: "walk-3-p3.png" },
+    ],
+    frameRate: 8,
+    repeat: -1,
+};
+
+export const PLAYER_P3_IDLE = {
+    key: "idle-p3",
+    frames: [
+        { key: "duck-3", frame: "idle-1-p3.png" },
+        { key: "duck-3", frame: "idle-2-p3.png" },
+        { key: "duck-3", frame: "idle-3-p3.png" },
+    ],
+    frameRate: 8,
+    repeat: -1,
+};
+
+export const PLAYER_P4_WALK = {
+    key: "walk-p4",
+    frames: [
+        { key: "duck-4", frame: "walk-1-p4.png" },
+        { key: "duck-4", frame: "walk-2-p4.png" },
+        { key: "duck-4", frame: "walk-3-p4.png" },
+    ],
+    frameRate: 8,
+    repeat: -1,
+};
+
+export const PLAYER_P4_IDLE = {
+    key: "idle-p4",
+    frames: [
+        { key: "duck-4", frame: "idle-1-p4.png" },
+        { key: "duck-4", frame: "idle-2-p4.png" },
+        { key: "duck-4", frame: "idle-3-p4.png" },
     ],
     frameRate: 8,
     repeat: -1,
