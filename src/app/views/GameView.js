@@ -80,7 +80,7 @@ export class GameView extends Phaser.GameObjects.Container {
             const dir = Phaser.Math.Angle.Between(x, y, this.player.x, this.player.y);
             const enemy = new Enemy(this.scene, e);
             enemy.setPosition(x, y);
-            enemy.setSpeed(e.speed + (Math.random() * 6 - 3));
+            enemy.setSpeed(e.speed + (Math.random() * 4 - 3));
             enemy.setAngle(dir);
             enemy.setScale(e.scale);
             this.add(enemy);
