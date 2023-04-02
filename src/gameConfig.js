@@ -92,8 +92,8 @@ export const BOSS_TYPE = {
 export const LEVELS_CONFIG = [
     // LEVEL 1
     {
-        name: "desert", // has nothing to do. just naming for ourselves
-        bkg: "desert.jpg", // Background image
+        name: "tile", // has nothing to do. just naming for ourselves
+        bkg: "tile.png", // Background image
         bkgItems: FIRST_LEVEL_BACKGROUND_ITEMS, // background items config. located in bkgItems.js file
         waves: [
             // LEVEL 1 WAVE 1
@@ -215,16 +215,16 @@ export const LEVELS_CONFIG = [
 // Counter popup, where coins are shown
 export const COUNTER_CONFIG = {
     position: {
-        x: -500,
-        y: -400,
+        x: 2000,
+        y: -500,
     },
-    scale: 3.5,
+    scale: 1.5,
     fontSize: 50,
     textPosition: {
-        x: 0,
+        x: 50,
         y: 0,
     },
-    bg: "btn-green.png",
+    bg: "hud_coins.png",
 };
 
 // Store popup config
@@ -232,95 +232,101 @@ export const STORE_POPUP_CONFIG = {
     itemsConfig: [
         // items config
         // 1
-        { x: -300, y: 0, scale: 1, bg: "store-item.png" },
+        { x: -300, y: 0, scale: 0.4, bg: "lot_1.png" },
         // 2
-        { x: -100, y: 0, scale: 1, bg: "store-item.png" },
+        { x: -100, y: 0, scale: 0.4, bg: "lot_2.png" },
         // 3
-        { x: 100, y: 0, scale: 1, bg: "store-item.png" },
+        { x: 100, y: 0, scale: 0.4, bg: "lot_3.png" },
         // 4
-        { x: 300, y: 0, scale: 1, bg: "store-item.png" },
+        { x: 300, y: 0, scale: 0.4, bg: "lot_4.png" },
     ],
-    scale: 3, // popup scale
+    scale: 4, // popup scale
     bg: "popup.png", // popup background image
-    tint: 0x0000aa, //set 0xffffff if not necessary
+    bgScale: 1,
+    bgAlpha: 0,
+    tint: 0xffffff, //set 0xffffff if not necessary
 
     backButton: {
         //back button config
         position: {
             // button position
-            x: -150,
-            y: 100,
+            x: -350,
+            y: -170,
         },
-        bg: "yellow-btn.png", //button background
-        scale: 1, //button scale
-        scaleDown: 0.7, // button scale down ratio, when clicked
+        bg: "hud_close.png", //button background
+        scale: 0.3, //button scale
+        scaleDown: 0.26, // button scale down ratio, when clicked
     },
 };
 
 // win popup config
 export const WIN_POPUP_CONFIG = {
     scale: 3,
-    bg: "popup.png",
+    bg: "up_window.png",
+    bgScale: 0.6,
+    bgAlpha: 1,
     tint: 0x00aa00, //set 0xffffff if not necessary
 
     storeButton: {
         position: {
             x: -150,
-            y: 100,
+            y: 70,
         },
-        bg: "yellow-btn.png",
-        scale: 1,
-        scaleDown: 0.7,
+        bg: "window_success_shop.png",
+        scale: 0.5,
+        scaleDown: 0.45,
     },
     nextLvlButton: {
         position: {
             x: 150,
-            y: 100,
+            y: 70,
         },
-        bg: "blue-btn.png",
-        scale: 1,
-        scaleDown: 0.7,
+        bg: "button_play.png",
+        scale: 0.5,
+        scaleDown: 0.45,
     },
 };
 
 // lose popup config
 export const LOSE_POPUP_CONFIG = {
     scale: 3,
-    bg: "popup.png",
+    bg: "down_window.png",
+    bgScale: 0.6,
+    bgAlpha: 1,
     tint: 0xaa0000, //set 0xffffff if not necessary
 
     storeButton: {
         position: {
             x: -150,
-            y: 100,
+            y: 70,
         },
-        bg: "yellow-btn.png",
-        scale: 1,
-        scaleDown: 0.7,
+        bg: "window_success_shop.png",
+        scale: 0.5,
+        scaleDown: 0.45,
     },
     retryBtn: {
         position: {
             x: 150,
-            y: 100,
+            y: 70,
         },
-        bg: "blue-btn.png",
-        scale: 1,
-        scaleDown: 0.7,
+        bg: "window_success_repair.png",
+        scale: 0.5,
+        scaleDown: 0.45,
     },
 };
 
 // Boot scene config
 export const BOOT_SCENE_CONFIG = {
     logo: {
-        image: "logo.png",
-        x: 100,
-        y: 0,
-        scale: 1,
+        image: "Logotip.png",
+        x: 600,
+        y: 287,
+        scale: 0.55,
     },
     button: {
-        image: "btn-green.png",
-        x: 100,
-        y: 300,
-        scale: 1,
+        image: "button_play.png",
+        x: 600,
+        y: 637,
+        scale: 0.5,
     },
 };

@@ -2,7 +2,7 @@ export const FIRST_LEVEL_BACKGROUND_ITEMS = [
     {
         x: 0,
         y: 0,
-        item: "bullet.png",
+        item: "dones_1.png",
         scale: 2,
     },
     {

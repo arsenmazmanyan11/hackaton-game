@@ -3,17 +3,18 @@ import { ForegroundEvents } from "../../events/GameEvents";
 import { WIN_POPUP_CONFIG } from "../../gameConfig";
 
 export class LevelWinPopup extends Phaser.GameObjects.Container {
-    constructor(scene, bg, tint) {
+    constructor(scene, bg, bgScale, bgAlpha) {
         super(scene);
         this.storeBtn = null;
         this.nextLvlBtn = null;
-        this.init(bg, tint);
+        this.init(bg, bgScale, bgAlpha);
     }
 
-    init(bg, tint) {
+    init(bg, bgScale, bgAlpha) {
         const bkg = this.scene.add.sprite(0, 0, bg);
-        bkg.setTint(tint);
         this.add(bkg);
+        bkg.setScale(bgScale)
+        bkg.setAlpha(bgAlpha)
 
         const { position: sPos, bg: sBg, scale: sScale, scaleDown: sScaleDown } = WIN_POPUP_CONFIG.storeButton;
         this.storeBtn = this.scene.add.sprite(sPos.x, sPos.y, sBg);

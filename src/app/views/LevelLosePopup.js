@@ -3,15 +3,17 @@ import { ForegroundEvents } from "../../events/GameEvents";
 import { LOSE_POPUP_CONFIG } from "../../gameConfig";
 
 export class LevelLosePopup extends Phaser.GameObjects.Container {
-    constructor(scene) {
+    constructor(scene,  bg, bgScale, bgAlpha) {
         super(scene);
-        this.init();
+        this.init( bg, bgScale, bgAlpha);
     }
 
-    init() {
-        const bkg = this.scene.add.sprite(0, 0, "popup.png");
-        bkg.setTint(0xaa0000);
+    init( bg, bgScale, bgAlpha) {
+        const bkg = this.scene.add.sprite(0, 0, bg);
+        // bkg.setTint(0xaa0000);
         this.add(bkg);
+        bkg.setScale(bgScale)
+        bkg.setAlpha(bgAlpha)
 
         const { position: sPos, bg: sBg, scale: sScale, scaleDown: sScaleDown } = LOSE_POPUP_CONFIG.storeButton;
 
