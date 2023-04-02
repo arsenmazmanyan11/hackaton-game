@@ -205,7 +205,7 @@ export class GameView extends Phaser.GameObjects.Container {
                 e.hitPlayer();
                 // this.player.alpha = 0.5;
             }
-            if (dist <= 1000) {
+            if (dist <= 1500) {
                 if (this.player.cooldown <= 0) {
                     this.player.cooldown = 1;
                     this.#shootBullet(e);
@@ -234,18 +234,21 @@ export class GameView extends Phaser.GameObjects.Container {
         this.bullets.push(bullet);
     }
     #shootBullet(enemy) {
-        const bullet = this.getBullet();
-        if (!bullet) return;
-        const { x: ex, y: ey } = enemy;
-        const { x, y } = this.player.shootingPoint;
-        bullet.visible = true;
-        bullet.x = this.player.x + x;
-        bullet.y = this.player.y + y;
-        const rot = Phaser.Math.Angle.Between(bullet.x, bullet.y, ex, ey);
-        bullet.setSpeed(PLAYER_CONFIG.bulletSpeed);
-        bullet.setAngle(rot);
-        bullet.rotation = this.player.rotation;
-        bullet.isActive = true;
+        const arr = this.player.shootingPoint;
+
+        arr.forEach(({ x, y }) => {
+            const bullet = this.getBullet();
+            if (!bullet) return;
+            const { x: ex, y: ey } = enemy;
+            bullet.visible = true;
+            bullet.x = this.player.x + x;
+            bullet.y = this.player.y + y;
+            const rot = Phaser.Math.Angle.Between(bullet.x, bullet.y, ex, ey);
+            bullet.setSpeed(PLAYER_CONFIG.bulletSpeed);
+            bullet.setAngle(rot);
+            bullet.rotation = this.player.rotation;
+            bullet.isActive = true;
+        });
     }
 
     #disbaleBullet(bullet) {

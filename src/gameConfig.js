@@ -20,7 +20,7 @@ export const PLAYER_CONFIG = {
     gunType: GUN_TYPE.basic, // DONT TOUCH
     bulletsCount: 50, // DONT TOUCH
     bulletDistance: 1000, // TO CHANGE
-    bulletSpeed: 10, // TO CHANGE
+    bulletSpeed: 15, // TO CHANGE
     speed: 15, // TO CHANGE
 };
 
@@ -153,18 +153,18 @@ export const LEVELS_CONFIG = [
                 enemiesCount: 5,
                 enemyType: ENEMY_TYPE.penguin,
                 spawnPosition: {
-                    x: 0,
-                    y: 0,
+                    x: Math.random() * 1000 - 1500,
+                    y: Math.random() * 1000 - 1500,
                 },
-                respawnTimeout: 0,
+                respawnTimeout: 2000,
             },
             // LEVEL 2 WAVE 2
             {
                 enemiesCount: 12,
                 enemyType: ENEMY_TYPE.penguin,
                 spawnPosition: {
-                    x: 100,
-                    y: 100,
+                    x: Math.random() * 1000 - 1500,
+                    y: Math.random() * 1000 - 1500,
                 },
                 respawnTimeout: 1000,
             },
@@ -173,8 +173,8 @@ export const LEVELS_CONFIG = [
                 enemiesCount: 0,
                 enemyType: ENEMY_TYPE.penguin,
                 spawnPosition: {
-                    x: -100,
-                    y: -100,
+                    x: Math.random() * 1000 - 1500,
+                    y: Math.random() * 1000 - 1500,
                 },
                 boss: BOSS_TYPE.morzh,
                 respawnTimeout: 3000,
@@ -192,18 +192,18 @@ export const LEVELS_CONFIG = [
                 enemiesCount: 13,
                 enemyType: ENEMY_TYPE.devil,
                 spawnPosition: {
-                    x: 0,
-                    y: 0,
+                    x: Math.random() * 1000 - 1500,
+                    y: Math.random() * 1000 - 1500,
                 },
-                respawnTimeout: 1000,
+                respawnTimeout: 3000,
             },
             // LEVEL 3 WAVE 2
             {
                 enemiesCount: 15,
                 enemyType: ENEMY_TYPE.devil,
                 spawnPosition: {
-                    x: 100,
-                    y: 100,
+                    x: Math.random() * 1000 - 1500,
+                    y: Math.random() * 1000 - 1500,
                 },
                 respawnTimeout: 3000,
             },
