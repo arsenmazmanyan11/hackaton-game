@@ -1,0 +1,145 @@
+{
+	"textures": [
+		{
+			"image": "duck.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 660,
+				"h": 533
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "idle-1-p1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 512,
+						"h": 547
+					},
+					"spriteSourceSize": {
+						"x": 215,
+						"y": 130,
+						"w": 214,
+						"h": 261
+					},
+					"frame": {
+						"x": 3,
+						"y": 3,
+						"w": 214,
+						"h": 261
+					}
+				},
+				{
+					"filename": "walk-2-p1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 512,
+						"h": 547
+					},
+					"spriteSourceSize": {
+						"x": 215,
+						"y": 134,
+						"w": 214,
+						"h": 261
+					},
+					"frame": {
+						"x": 223,
+						"y": 3,
+						"w": 214,
+						"h": 261
+					}
+				},
+				{
+					"filename": "walk-1-p1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 512,
+						"h": 547
+					},
+					"spriteSourceSize": {
+						"x": 215,
+						"y": 130,
+						"w": 214,
+						"h": 260
+					},
+					"frame": {
+						"x": 3,
+						"y": 270,
+						"w": 214,
+						"h": 260
+					}
+				},
+				{
+					"filename": "idle-2-p1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 512,
+						"h": 547
+					},
+					"spriteSourceSize": {
+						"x": 215,
+						"y": 134,
+						"w": 214,
+						"h": 257
+					},
+					"frame": {
+						"x": 223,
+						"y": 270,
+						"w": 214,
+						"h": 257
+					}
+				},
+				{
+					"filename": "idle-3-p1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 512,
+						"h": 547
+					},
+					"spriteSourceSize": {
+						"x": 215,
+						"y": 134,
+						"w": 214,
+						"h": 257
+					},
+					"frame": {
+						"x": 443,
+						"y": 3,
+						"w": 214,
+						"h": 257
+					}
+				},
+				{
+					"filename": "walk-3-p1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 512,
+						"h": 547
+					},
+					"spriteSourceSize": {
+						"x": 215,
+						"y": 134,
+						"w": 214,
+						"h": 256
+					},
+					"frame": {
+						"x": 443,
+						"y": 266,
+						"w": 214,
+						"h": 256
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://github.com/odrick/free-tex-packer-core",
+		"version": "0.3.4"
+	}
+}

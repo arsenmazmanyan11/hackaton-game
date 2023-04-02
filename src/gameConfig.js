@@ -1,4 +1,12 @@
-import { FIRST_LEVEL_BACKGROUND_ITEMS, SECOND_LEVEL_BACKGROUND_ITEMS, THIRD_LEVEL_BACKGROUND_ITEMS } from "./bkgItems";
+import {
+    CANCER_ANIM,
+    CANCER_BOSS_ANIM,
+    DEVIL_ANIM,
+    DEVIL_BOSS_ANIM,
+    MORZH_BOSS_ANIM,
+    PENGUIN_ANIM,
+} from "./animsConfig";
+import { FIRST_LEVEL_BACKGROUND_ITEMS } from "./bkgItems";
 
 export const GUN_TYPE = {
     basic: "gun1",
@@ -25,66 +33,68 @@ export const ENEMY_TYPE = {
         speed: 10, //
         damage: 10, //
         hitInterval: 1, //seconds
+        anim: CANCER_ANIM,
+        firstFrame: "cancer-1.png",
+        scale: 0.6,
     },
-    type2: {
-        name: "enemy-type2",
+    devil: {
+        name: "devil",
         health: 200,
         coins: 30,
         speed: 11,
         damage: 10,
         hitInterval: 0.5,
+        anim: DEVIL_ANIM,
+        firstFrame: "devil-1.png",
+        scale: 0.9,
     },
-    type3: {
-        name: "enemy-type3",
+    penguin: {
+        name: "penguin",
         health: 300,
         coins: 40,
         speed: 12,
         damage: 10,
         hitInterval: 1,
-    },
-    type4: {
-        name: "enemy-type4",
-        health: 400,
-        coins: 50,
-        speed: 13,
-        damage: 10,
-        hitInterval: 1,
-    },
-    type5: {
-        name: "enemy-type5",
-        health: 500,
-        coins: 60,
-        speed: 13,
-        damage: 10,
-        hitInterval: 1,
+        anim: PENGUIN_ANIM,
+        firstFrame: "penguin-1.png",
+        scale: 0.8,
     },
 };
 
 // TO CHANGE
 export const BOSS_TYPE = {
-    type1: {
-        name: "boss-type1",
+    cancer: {
+        name: "cancerBoss",
         health: 20,
         coins: 100,
         speed: 11,
         damage: 100,
         hitInterval: 0.3,
+        anim: CANCER_BOSS_ANIM,
+        firstFrame: "cancer-boss-1.png",
+        scale: 0.9,
     },
-    type2: {
-        name: "boss-type2",
+    morzh: {
+        name: "morzhBoss",
         health: 2000,
         coins: 200,
         speed: 22,
         damage: 100,
         hitInterval: 0.3,
+        anim: MORZH_BOSS_ANIM,
+        firstFrame: "morzh-boss-1.png",
+        scale: 2.1,
     },
-    type3: {
-        name: "boss-type3",
+    devil: {
+        name: "devilBoss",
         health: 3000,
         coins: 300,
         speed: 33,
         damage: 100,
         hitInterval: 0.3,
+        anim: DEVIL_BOSS_ANIM,
+        firstFrame: "devil-boss-1.png",
+        scale: 1.7,
     },
 };
 
@@ -98,7 +108,7 @@ export const LEVELS_CONFIG = [
         waves: [
             // LEVEL 1 WAVE 1
             {
-                enemiesCount: 1, // how many enemies in this wave
+                enemiesCount: 7, // how many enemies in this wave
                 enemyType: ENEMY_TYPE.cancer, // which enemy
                 spawnPosition: {
                     // where to appear in the world
@@ -110,7 +120,7 @@ export const LEVELS_CONFIG = [
 
             // LEVEL 1 WAVE 2
             {
-                enemiesCount: 5,
+                enemiesCount: 10,
                 enemyType: ENEMY_TYPE.cancer,
                 spawnPosition: {
                     x: 100,
@@ -120,15 +130,15 @@ export const LEVELS_CONFIG = [
             },
             // LEVEL 1 WAVE 3
             {
-                enemiesCount: 2,
+                enemiesCount: 15,
                 enemyType: ENEMY_TYPE.cancer,
                 spawnPosition: {
                     x: -100,
                     y: -100,
                 },
-                respawnTimeout: 3000,
+                respawnTimeout: 0,
                 // !!!!!!!
-                boss: BOSS_TYPE.type1, // !!!!! include boss in the last wave
+                boss: BOSS_TYPE.cancer, // !!!!! include boss in the last wave
             },
         ],
     },
@@ -140,8 +150,8 @@ export const LEVELS_CONFIG = [
         waves: [
             // LEVEL 2 WAVE 1
             {
-                enemiesCount: 1,
-                enemyType: ENEMY_TYPE.type2,
+                enemiesCount: 8,
+                enemyType: ENEMY_TYPE.penguin,
                 spawnPosition: {
                     x: 0,
                     y: 0,
@@ -150,8 +160,8 @@ export const LEVELS_CONFIG = [
             },
             // LEVEL 2 WAVE 2
             {
-                enemiesCount: 5,
-                enemyType: ENEMY_TYPE.type2,
+                enemiesCount: 12,
+                enemyType: ENEMY_TYPE.penguin,
                 spawnPosition: {
                     x: 100,
                     y: 100,
@@ -161,12 +171,12 @@ export const LEVELS_CONFIG = [
             // LEVEL 2 WAVE 3
             {
                 enemiesCount: 15,
-                enemyType: ENEMY_TYPE.type2,
+                enemyType: ENEMY_TYPE.penguin,
                 spawnPosition: {
                     x: -100,
                     y: -100,
                 },
-                boss: BOSS_TYPE.type2,
+                boss: BOSS_TYPE.morzh,
                 respawnTimeout: 3000,
             },
         ],
@@ -179,18 +189,18 @@ export const LEVELS_CONFIG = [
         waves: [
             // LEVEL 3 WAVE 1
             {
-                enemiesCount: 1,
-                enemyType: ENEMY_TYPE.type2,
+                enemiesCount: 13,
+                enemyType: ENEMY_TYPE.devil,
                 spawnPosition: {
                     x: 0,
                     y: 0,
                 },
-                respawnTimeout: 0,
+                respawnTimeout: 1000,
             },
             // LEVEL 3 WAVE 2
             {
-                enemiesCount: 5,
-                enemyType: ENEMY_TYPE.type2,
+                enemiesCount: 15,
+                enemyType: ENEMY_TYPE.devil,
                 spawnPosition: {
                     x: 100,
                     y: 100,
@@ -199,13 +209,13 @@ export const LEVELS_CONFIG = [
             },
             // LEVEL 3 WAVE 3
             {
-                enemiesCount: 15,
-                enemyType: ENEMY_TYPE.type2,
+                enemiesCount: 18,
+                enemyType: ENEMY_TYPE.devil,
                 spawnPosition: {
                     x: -100,
                     y: -100,
                 },
-                boss: BOSS_TYPE.type2,
+                boss: BOSS_TYPE.devil,
                 respawnTimeout: 3000,
             },
         ],

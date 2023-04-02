@@ -1,0 +1,103 @@
+{
+	"textures": [
+		{
+			"image": "devil.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 921,
+				"h": 885
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "devil-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 491,
+						"h": 439
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 491,
+						"h": 437
+					},
+					"frame": {
+						"x": 3,
+						"y": 3,
+						"w": 491,
+						"h": 437
+					}
+				},
+				{
+					"filename": "devil-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 489,
+						"h": 438
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 489,
+						"h": 436
+					},
+					"frame": {
+						"x": 3,
+						"y": 446,
+						"w": 489,
+						"h": 436
+					}
+				},
+				{
+					"filename": "devil-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 419,
+						"h": 384
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 418,
+						"h": 382
+					},
+					"frame": {
+						"x": 500,
+						"y": 3,
+						"w": 418,
+						"h": 382
+					}
+				},
+				{
+					"filename": "devil-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 489,
+						"h": 438
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 489,
+						"h": 436
+					},
+					"frame": {
+						"x": 3,
+						"y": 446,
+						"w": 489,
+						"h": 436
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://github.com/odrick/free-tex-packer-core",
+		"version": "0.3.4"
+	}
+}

@@ -1,0 +1,103 @@
+{
+	"textures": [
+		{
+			"image": "penguin.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 882,
+				"h": 1140
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "penguin-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 437,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 437,
+						"h": 374
+					},
+					"frame": {
+						"x": 3,
+						"y": 3,
+						"w": 437,
+						"h": 374
+					}
+				},
+				{
+					"filename": "penguin-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 437,
+						"h": 372
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 437,
+						"h": 371
+					},
+					"frame": {
+						"x": 3,
+						"y": 383,
+						"w": 437,
+						"h": 371
+					}
+				},
+				{
+					"filename": "penguin-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 433,
+						"h": 370
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 433,
+						"h": 369
+					},
+					"frame": {
+						"x": 446,
+						"y": 3,
+						"w": 433,
+						"h": 369
+					}
+				},
+				{
+					"filename": "penguin-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 427,
+						"h": 378
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 427,
+						"h": 377
+					},
+					"frame": {
+						"x": 3,
+						"y": 760,
+						"w": 427,
+						"h": 377
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://github.com/odrick/free-tex-packer-core",
+		"version": "0.3.4"
+	}
+}

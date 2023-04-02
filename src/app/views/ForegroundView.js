@@ -1,5 +1,5 @@
 import { lego } from "@armathai/lego";
-import { ForegroundEvents, GameEvents } from "../../events/GameEvents";
+import { GameEvents } from "../../events/GameEvents";
 import { ItemModelEvents } from "../../events/ModelEvents";
 import { LOSE_POPUP_CONFIG, STORE_POPUP_CONFIG, WIN_POPUP_CONFIG } from "../../gameConfig";
 import { LevelLosePopup } from "./LevelLosePopup";
@@ -16,7 +16,7 @@ export class ForegroundView extends Phaser.GameObjects.Container {
         lego.event.on(ItemModelEvents.IsBoughtUpdate, this.#itemBoughtUpdate, this);
 
         // TODO REMOVE
-        lego.event.on(ForegroundEvents.StoreClick, this.#initStorePopup, this);
+        // lego.event.on(ForegroundEvents.StoreClick, this.#initStorePopup, this);
     }
 
     #initWinPopup(x, y) {

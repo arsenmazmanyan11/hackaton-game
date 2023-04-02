@@ -1,5 +1,5 @@
 import { Scenes } from "../../constants";
-import { BOOT_SCENE_CONFIG } from "../../gameConfig";
+// import { BOOT_SCENE_CONFIG } from "../../gameConfig";
 
 export default class BootScene extends Phaser.Scene {
     preload() {
