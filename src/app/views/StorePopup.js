@@ -3,10 +3,10 @@ import Head from "../../models/HeadModel";
 import { StoreItem } from "./StoreItem";
 
 export class StorePopup extends Phaser.GameObjects.Container {
-    constructor(scene, bg, tint) {
+    constructor(scene, bg, bgScale, bgAlpha) {
         super(scene);
         this.items = [];
-        this.init(bg, tint);
+        this.init(bg,  bgScale, bgAlpha);
     }
 
     setItemBought(uuid) {
@@ -14,10 +14,12 @@ export class StorePopup extends Phaser.GameObjects.Container {
         item.disableItem();
     }
 
-    init(bg, tint) {
+    init(bg,  bgScale, bgAlpha) {
         const bkg = this.scene.add.sprite(0, 0, bg);
-        bkg.setTint(tint);
+        // bkg.setTint(tint);
         this.add(bkg);
+        bkg.setScale(bgScale)
+        bkg.setAlpha(bgAlpha)
 
         const models = [...Head.gameModel.storeModel.items];
         models.forEach((m, i) => {

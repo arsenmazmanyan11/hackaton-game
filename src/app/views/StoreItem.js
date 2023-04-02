@@ -11,7 +11,7 @@ export class StoreItem extends Phaser.GameObjects.Container {
 
     init(bg) {
         this.bkg = this.scene.add.sprite(0, 0, bg);
-        this.bkg.setTint(this.config.tint);
+        // this.bkg.setTint(this.config.tint);
         this.add(this.bkg);
 
         this.text = this.scene.add.text(this.bkg.x, this.bkg.y, this.config.price);
@@ -24,12 +24,12 @@ export class StoreItem extends Phaser.GameObjects.Container {
                 lego.event.emit(StorePopupEvents.ItemClick, this.config.itemName);
             });
         } else {
-            this.bkg.setAlpha(0.3);
+            // this.bkg.setAlpha(0.3);
         }
     }
 
     disableItem() {
         this.bkg.disableInteractive();
-        this.bkg.setAlpha(0.8);
+        // this.bkg.setAlpha(0.8);
     }
 }
