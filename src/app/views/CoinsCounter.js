@@ -16,7 +16,7 @@ export class CoinsCounter extends Phaser.GameObjects.Container {
         // });
 
         this.text = this.scene.add.text(textPosition.x, textPosition.y, "0", { fontSize });
-        this.text.setOrigin(0, 0.5);
+        this.text.setOrigin(0.5);
         this.add(this.text);
     }
 

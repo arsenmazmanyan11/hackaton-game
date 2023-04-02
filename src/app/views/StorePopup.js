@@ -33,7 +33,7 @@ export class StorePopup extends Phaser.GameObjects.Container {
 
         const backBtn = this.scene.add.sprite(position.x, position.y, btnBg);
         backBtn.setInteractive();
-        backBtn.on(Phaser.Input.Events.POINTER_UP, () => {
+        backBtn.on("pointerdown", () => {
             this.emit("storeBackBtnClick");
             // lego.event.emit(ForegroundEvents.NextLvlClick);
         });

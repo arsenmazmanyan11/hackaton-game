@@ -69,6 +69,7 @@ export class PlayerModel extends ObservableModel {
     }
 
     restart() {
+        this._isDead = false;
         this._coins = this._lastCoins;
     }
 

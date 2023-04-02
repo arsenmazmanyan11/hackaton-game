@@ -5,6 +5,8 @@ import { WIN_POPUP_CONFIG } from "../../gameConfig";
 export class LevelWinPopup extends Phaser.GameObjects.Container {
     constructor(scene, bg, tint) {
         super(scene);
+        this.storeBtn = null;
+        this.nextLvlBtn = null;
         this.init(bg, tint);
     }
 
@@ -14,26 +16,25 @@ export class LevelWinPopup extends Phaser.GameObjects.Container {
         this.add(bkg);
 
         const { position: sPos, bg: sBg, scale: sScale } = WIN_POPUP_CONFIG.storeButton;
-        const storeBtn = this.scene.add.sprite(sPos.x, sPos.y, sBg);
-        storeBtn.setScale(sScale);
-        storeBtn.setInteractive();
-        storeBtn.on(Phaser.Input.Events.POINTER_UP, () => {
+        this.storeBtn = this.scene.add.sprite(sPos.x, sPos.y, sBg);
+        this.storeBtn.setScale(sScale);
+        this.storeBtn.setInteractive();
+        this.storeBtn.on("pointerdown", () => {
             this.emit("winStoreBtnClick");
             lego.event.emit(ForegroundEvents.StoreClick);
         });
-        this.add(storeBtn);
+        this.add(this.storeBtn);
 
         const { position: nPos, bg: nBg, scale: nScale } = WIN_POPUP_CONFIG.nextLvlButton;
 
-        const nextLvlBtn = this.scene.add.sprite(nPos.x, nPos.y, nBg);
-        nextLvlBtn.setScale(nScale);
-        nextLvlBtn.setInteractive();
-        nextLvlBtn.on(Phaser.Input.Events.POINTER_UP, () => {
+        this.nextLvlBtn = this.scene.add.sprite(nPos.x, nPos.y, nBg);
+        this.nextLvlBtn.setScale(nScale);
+        this.nextLvlBtn.setInteractive();
+        this.nextLvlBtn.on("pointerdown", () => {
             this.emit("winNextLvlClick");
             lego.event.emit(ForegroundEvents.NextLvlClick);
         });
-        this.add(nextLvlBtn);
-        // this.#initWinPopup();
+        this.add(this.nextLvlBtn);
     }
 
     #initWinPopup() {

@@ -1,7 +1,7 @@
 import { lego } from "@armathai/lego";
 import { GameState, TOLERANCE } from "../../constants";
 import { GameEvents } from "../../events/GameEvents";
-import { EnemyModelEvents, GameModelEvents, LevelModelEvents } from "../../events/ModelEvents";
+import { EnemyModelEvents, GameModelEvents, LevelModelEvents, PlayerModelEvents } from "../../events/ModelEvents";
 import { PLAYER_CONFIG } from "../../gameConfig";
 import BackgroundView from "./BackgroundView";
 import Bullet from "./Bullet";
@@ -13,25 +13,45 @@ export class GameView extends Phaser.GameObjects.Container {
         super(scene);
         this.enemies = [];
         this.bullets = [];
-
+        this.state = GameState.unknown;
         this.init();
 
         lego.event.on(GameModelEvents.PlayerModelUpdate, this.#onPlayerModelUpdate, this);
         lego.event.on(GameModelEvents.CurrentLevelUpdate, this.#onCurrentLevelUpdate, this);
         lego.event.on(LevelModelEvents.CurrentWaveUpdate, this.#onCurrentWaveUpdate, this);
         lego.event.on(EnemyModelEvents.IsDeadUpdate, this.#onEnemyDeadUpdate, this);
+        lego.event.on(PlayerModelEvents.IsDeadUpdate, this.#onPlayerDeadUpdate, this);
         lego.event.on(GameModelEvents.StateUpdate, this.#onGameStateUpdate, this);
     }
 
     #onGameStateUpdate(newState, oldState) {
+        this.state = newState;
         switch (newState) {
             case GameState.levelWin:
+                this.bullets.forEach((e) => e.destroy());
+                this.bullets = [];
                 lego.event.emit(GameEvents.ShowWinPopup, this.player.x, this.player.y);
+                break;
+            case GameState.levelLose:
+                this.bullets.forEach((e) => e.destroy());
+                this.bullets = [];
+                lego.event.emit(GameEvents.ShowLosePopup, this.player.x, this.player.y);
+                break;
+            case GameState.game:
+                this.player.cooldown = 1;
+                console.warn(34567890);
+                this.initBullets();
+                console.warn(this.bullets);
                 break;
 
             default:
                 break;
         }
+    }
+
+    #onPlayerDeadUpdate() {
+        this.enemies.forEach((e) => e.destroy());
+        this.enemies = [];
     }
 
     #onPlayerModelUpdate(newValue, oldValue) {
@@ -42,6 +62,9 @@ export class GameView extends Phaser.GameObjects.Container {
     }
 
     #onCurrentLevelUpdate(newValue) {
+        console.warn("onCurrentLevelUpdate");
+        this.enemies.forEach((e) => e.destroy());
+        this.enemies = [];
         const { bkg } = newValue;
         this.bkg.changeTexture(bkg);
     }
@@ -52,6 +75,7 @@ export class GameView extends Phaser.GameObjects.Container {
     }
 
     #addEnemies(enemies) {
+        this.enemies.forEach((e) => e.destroy());
         this.enemies = [];
         this.enemies = enemies.map((e) => {
             const { x, y } = getEnemySpawnPosition(e.spawnPosition);
@@ -77,7 +101,11 @@ export class GameView extends Phaser.GameObjects.Container {
     }
 
     update() {
+        if (this.state === GameState.levelLose || this.state === GameState.levelWin) return;
+        // console.log("update");
+
         this.player.cooldown -= 1 / 60;
+        console.log(this.player.cooldown);
         this.followPointer(this.scene.input.activePointer);
         this.bullets.forEach((b) => {
             b.isActive && b.update();
@@ -132,6 +160,7 @@ export class GameView extends Phaser.GameObjects.Container {
     }
 
     getBullet() {
+        console.warn(this.bullets);
         return this.bullets.find((b) => !b.isActive);
     }
 
@@ -145,7 +174,9 @@ export class GameView extends Phaser.GameObjects.Container {
         this.bullets.push(bullet);
     }
     #shootBullet(enemy) {
+        console.warn("SHOOOOOt");
         const bullet = this.getBullet();
+        console.log(bullet);
         if (!bullet) return;
         const { x: ex, y: ey } = enemy;
         const { x } = this.player.shootingPoint;

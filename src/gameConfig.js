@@ -100,7 +100,7 @@ export const LEVELS_CONFIG = [
                     x: 0,
                     y: 0,
                 },
-                respawnTimeout: 0,
+                respawnTimeout: 1000, // miliseconds
             },
             // {
             //     enemiesCount: 5,
@@ -123,40 +123,40 @@ export const LEVELS_CONFIG = [
             },
         ],
     },
-    // {
-    //     name: "desert",
-    //     bkg: "bg.jpg",
-    //     waves: [
-    //         {
-    //             enemiesCount: 1,
-    //             enemyType: ENEMY_TYPE.type2,
-    //             spawnPosition: {
-    //                 x: 0,
-    //                 y: 0,
-    //             },
-    //             respawnTimeout: 0,
-    //         },
-    //         {
-    //             enemiesCount: 5,
-    //             enemyType: ENEMY_TYPE.type2,
-    //             spawnPosition: {
-    //                 x: 100,
-    //                 y: 100,
-    //             },
-    //             respawnTimeout: 3000,
-    //         },
-    //         {
-    //             enemiesCount: 15,
-    //             enemyType: ENEMY_TYPE.type2,
-    //             spawnPosition: {
-    //                 x: -100,
-    //                 y: -100,
-    //             },
-    //             boss: BOSS_TYPE.type2,
-    //             respawnTimeout: 3000,
-    //         },
-    //     ],
-    // },
+    {
+        name: "TEST",
+        bkg: "blue-btn.png",
+        waves: [
+            {
+                enemiesCount: 1,
+                enemyType: ENEMY_TYPE.type2,
+                spawnPosition: {
+                    x: 0,
+                    y: 0,
+                },
+                respawnTimeout: 0,
+            },
+            {
+                enemiesCount: 5,
+                enemyType: ENEMY_TYPE.type2,
+                spawnPosition: {
+                    x: 100,
+                    y: 100,
+                },
+                respawnTimeout: 3000,
+            },
+            {
+                enemiesCount: 15,
+                enemyType: ENEMY_TYPE.type2,
+                spawnPosition: {
+                    x: -100,
+                    y: -100,
+                },
+                boss: BOSS_TYPE.type2,
+                respawnTimeout: 3000,
+            },
+        ],
+    },
 ];
 
 export const COUNTER_CONFIG = {
@@ -167,7 +167,7 @@ export const COUNTER_CONFIG = {
     scale: 3.5,
     fontSize: 50,
     textPosition: {
-        x: -100,
+        x: 0,
         y: 0,
     },
     bg: "btn-green.png",

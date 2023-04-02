@@ -1,5 +1,6 @@
 import { lego } from "@armathai/lego";
 import { ForegroundEvents } from "../../events/GameEvents";
+import { LOSE_POPUP_CONFIG } from "../../gameConfig";
 
 export class LevelLosePopup extends Phaser.GameObjects.Container {
     constructor(scene) {
@@ -12,7 +13,7 @@ export class LevelLosePopup extends Phaser.GameObjects.Container {
         bkg.setTint(0xaa0000);
         this.add(bkg);
 
-        const { position: sPos, bg: sBg, scale: sScale } = WIN_POPUP_CONFIG.storeButton;
+        const { position: sPos, bg: sBg, scale: sScale } = LOSE_POPUP_CONFIG.storeButton;
 
         const storeBtn = this.scene.add.sprite(sPos.x, sPos.y, sBg);
         storeBtn.setScale(sScale);
@@ -23,7 +24,7 @@ export class LevelLosePopup extends Phaser.GameObjects.Container {
         });
         this.add(storeBtn);
 
-        const { position: rPos, bg: rBg, scale: rScale } = WIN_POPUP_CONFIG.storeButton;
+        const { position: rPos, bg: rBg, scale: rScale } = LOSE_POPUP_CONFIG.retryBtn;
 
         const retryBtn = this.scene.add.sprite(rPos.x, rPos.y, rBg);
         retryBtn.setScale(rScale);

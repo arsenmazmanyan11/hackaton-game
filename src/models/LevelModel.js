@@ -49,6 +49,7 @@ export class LevelModel extends ObservableModel {
 
     restartLevel() {
         this.#initWaves();
+        this._currentWaveIndex = -1;
         this.startNextWave();
     }
 

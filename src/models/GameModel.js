@@ -63,6 +63,7 @@ export class GameModel extends ObservableModel {
     }
 
     startNextLevel() {
+        this.state = GameState.game;
         this._playerModel.nextLevel();
 
         this._level += 1;
@@ -71,9 +72,11 @@ export class GameModel extends ObservableModel {
     }
 
     restartCurrentLevel() {
+        this.state = GameState.game;
         this._playerModel.restart();
         this._currentLevel = this._levels[this._level];
-        this._currentLevel.startFromZero();
+        this._currentLevel.restartLevel();
+        console.warn(this._currentLevel);
     }
 
     init() {

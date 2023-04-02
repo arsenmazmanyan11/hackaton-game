@@ -29,8 +29,8 @@ export const playerHitCommand = (damage) => {
     Head.gameModel.damagePlayer(damage);
 };
 
-export const onPlayerDeadCommand = () => {
-    Head.gameModel.state = GameState.levelLose;
+export const onPlayerDeadCommand = (isDead) => {
+    Head.gameModel.state = isDead ? GameState.levelLose : GameState.game;
     // Head.gameModel.damagePlayer(damage);
 };
 
