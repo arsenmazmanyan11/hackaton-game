@@ -25,7 +25,6 @@ export class LevelLosePopup extends Phaser.GameObjects.Container {
         });
         storeBtn.on("pointerup", () => {
             this.emit("loseStoreBtnClick");
-            lego.event.emit(ForegroundEvents.StoreClick);
         });
         this.add(storeBtn);
 

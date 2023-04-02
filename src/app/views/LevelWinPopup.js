@@ -27,7 +27,6 @@ export class LevelWinPopup extends Phaser.GameObjects.Container {
         });
         this.storeBtn.on("pointerup", () => {
             this.emit("winStoreBtnClick");
-            lego.event.emit(ForegroundEvents.StoreClick);
         });
 
         this.add(this.storeBtn);

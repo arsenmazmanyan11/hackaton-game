@@ -7,6 +7,7 @@ export default class BootScene extends Phaser.Scene {
     }
 
     create() {
+        // TODO
         // this.game.scene.stop(Scenes.Boot);
         // this.game.scene.start(Scenes.Game);
     }

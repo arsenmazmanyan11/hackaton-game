@@ -100,7 +100,8 @@ export class GameView extends Phaser.GameObjects.Container {
 
     update() {
         if (this.state === GameState.levelLose || this.state === GameState.levelWin) return;
-
+        // TODO REMOVE
+        return;
         this.player.cooldown -= 1 / 60;
         this.followPointer(this.scene.input.activePointer);
         this.bullets.forEach((b) => {
