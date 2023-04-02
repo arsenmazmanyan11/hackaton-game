@@ -16,7 +16,6 @@ export const assets = [
     { name: "bullet.png", path: "assets/uncompressed/bullet.png" },
     { name: "Logotip.png", path: "assets/uncompressed/Logotip.png" },
     { name: "button_play.png", path: "assets/uncompressed/button_play.png" },
-    { name: "tile.png", path: "assets/uncompressed/tile.png" },
     { name: "lot_4.png", path: "assets/uncompressed/lot_4.png" },
     { name: "lot_1.png", path: "assets/uncompressed/lot_1.png" },
     { name: "lot_2.png", path: "assets/uncompressed/lot_2.png" },
@@ -29,5 +28,8 @@ export const assets = [
     { name: "hud_coins.png", path: "assets/uncompressed/hud_coins.png" },
     { name: "up_window.png", path: "assets/uncompressed/up_window.png" },
     { name: "dones_1.png", path: "assets/uncompressed/dones_1.png" },
+    { name: "location_1.png", path: "assets/uncompressed/location_1.png" },
+    { name: "location_2.png", path: "assets/uncompressed/location_2.png" },
+    { name: "location_3.png", path: "assets/uncompressed/location_3.png" },
     
 ];

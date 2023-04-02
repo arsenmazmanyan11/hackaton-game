@@ -6,7 +6,7 @@ import {
     MORZH_BOSS_ANIM,
     PENGUIN_ANIM,
 } from "./animsConfig";
-import { FIRST_LEVEL_BACKGROUND_ITEMS } from "./bkgItems";
+import { FIRST_LEVEL_BACKGROUND_ITEMS, SECOND_LEVEL_BACKGROUND_ITEMS, THIRD_LEVEL_BACKGROUND_ITEMS } from "./bkgItems";
 
 export const GUN_TYPE = {
     basic: "gun1",
@@ -16,11 +16,11 @@ export const GUN_TYPE = {
 };
 
 export const PLAYER_CONFIG = {
-    initialCoins: 10000, // TO CHANGE
+    initialCoins: 100000, // TO CHANGE
     gunType: GUN_TYPE.basic, // DONT TOUCH
     bulletsCount: 50, // DONT TOUCH
     bulletDistance: 1000, // TO CHANGE
-    bulletSpeed: 5, // TO CHANGE
+    bulletSpeed: 10, // TO CHANGE
     speed: 15, // TO CHANGE
 };
 
@@ -31,7 +31,7 @@ export const ENEMY_TYPE = {
         health: 20, //will let you know when to test
         coins: 20, //
         speed: 10, //
-        damage: 10, //
+        damage: 1, //
         hitInterval: 1, //seconds
         anim: CANCER_ANIM,
         firstFrame: "cancer-1.png",
@@ -39,7 +39,7 @@ export const ENEMY_TYPE = {
     },
     devil: {
         name: "devil",
-        health: 200,
+        health: 20,
         coins: 30,
         speed: 11,
         damage: 10,
@@ -50,7 +50,7 @@ export const ENEMY_TYPE = {
     },
     penguin: {
         name: "penguin",
-        health: 300,
+        health: 30,
         coins: 40,
         speed: 12,
         damage: 10,
@@ -65,7 +65,7 @@ export const ENEMY_TYPE = {
 export const BOSS_TYPE = {
     cancer: {
         name: "cancerBoss",
-        health: 20,
+        health: 1000,
         coins: 100,
         speed: 11,
         damage: 100,
@@ -78,7 +78,7 @@ export const BOSS_TYPE = {
         name: "morzhBoss",
         health: 2000,
         coins: 200,
-        speed: 22,
+        speed: 66,
         damage: 100,
         hitInterval: 0.3,
         anim: MORZH_BOSS_ANIM,
@@ -87,9 +87,9 @@ export const BOSS_TYPE = {
     },
     devil: {
         name: "devilBoss",
-        health: 3000,
+        health: 2300,
         coins: 300,
-        speed: 33,
+        speed: 28,
         damage: 100,
         hitInterval: 0.3,
         anim: DEVIL_BOSS_ANIM,
@@ -102,39 +102,39 @@ export const BOSS_TYPE = {
 export const LEVELS_CONFIG = [
     // LEVEL 1
     {
-        name: "tile", // has nothing to do. just naming for ourselves
-        bkg: "tile.png", // Background image
+        name: "desert", // has nothing to do. just naming for ourselves
+        bkg: "location_1.png", // Background image
         bkgItems: FIRST_LEVEL_BACKGROUND_ITEMS, // background items config. located in bkgItems.js file
         waves: [
             // LEVEL 1 WAVE 1
             {
-                enemiesCount: 7, // how many enemies in this wave
+                enemiesCount: 4, // how many enemies in this wave
                 enemyType: ENEMY_TYPE.cancer, // which enemy
                 spawnPosition: {
                     // where to appear in the world
-                    x: 0,
-                    y: 0,
+                    x: 500,
+                    y: -1300,
                 },
                 respawnTimeout: 1000, // miliseconds, delay in their appearing
             },
 
             // LEVEL 1 WAVE 2
             {
-                enemiesCount: 10,
+                enemiesCount: 7,
                 enemyType: ENEMY_TYPE.cancer,
                 spawnPosition: {
                     x: 100,
-                    y: 100,
+                    y: -1300,
                 },
                 respawnTimeout: 3000,
             },
             // LEVEL 1 WAVE 3
             {
-                enemiesCount: 15,
+                enemiesCount: 0,
                 enemyType: ENEMY_TYPE.cancer,
                 spawnPosition: {
-                    x: -100,
-                    y: -100,
+                    x: -1000,
+                    y: -1000,
                 },
                 respawnTimeout: 0,
                 // !!!!!!!
@@ -144,13 +144,13 @@ export const LEVELS_CONFIG = [
     },
     // LEVEL 2
     {
-        name: "TEST",
-        bkg: "blue-btn.png",
+        name: "snow",
+        bkg: "location_2.png",
         bkgItems: SECOND_LEVEL_BACKGROUND_ITEMS,
         waves: [
             // LEVEL 2 WAVE 1
             {
-                enemiesCount: 8,
+                enemiesCount: 5,
                 enemyType: ENEMY_TYPE.penguin,
                 spawnPosition: {
                     x: 0,
@@ -166,11 +166,11 @@ export const LEVELS_CONFIG = [
                     x: 100,
                     y: 100,
                 },
-                respawnTimeout: 3000,
+                respawnTimeout: 1000,
             },
             // LEVEL 2 WAVE 3
             {
-                enemiesCount: 15,
+                enemiesCount: 0,
                 enemyType: ENEMY_TYPE.penguin,
                 spawnPosition: {
                     x: -100,
@@ -183,8 +183,8 @@ export const LEVELS_CONFIG = [
     },
     // LEVEL 3
     {
-        name: "TEST 2",
-        bkg: "blue-btn.png",
+        name: "fire",
+        bkg: "location_3.png",
         bkgItems: THIRD_LEVEL_BACKGROUND_ITEMS,
         waves: [
             // LEVEL 3 WAVE 1
@@ -209,11 +209,11 @@ export const LEVELS_CONFIG = [
             },
             // LEVEL 3 WAVE 3
             {
-                enemiesCount: 18,
+                enemiesCount: 0,
                 enemyType: ENEMY_TYPE.devil,
                 spawnPosition: {
-                    x: -100,
-                    y: -100,
+                    x: -10200,
+                    y: -2000,
                 },
                 boss: BOSS_TYPE.devil,
                 respawnTimeout: 3000,
