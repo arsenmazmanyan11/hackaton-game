@@ -1,5 +1,6 @@
 import { lego } from "@armathai/lego";
 import {
+    BOOM,
     CANCER_ANIM,
     CANCER_BOSS_ANIM,
     DEVIL_ANIM,
@@ -21,28 +22,43 @@ export default class PlayerView extends Phaser.GameObjects.Container {
     constructor(scene, config) {
         super(scene);
 
-        const { coins } = config;
+        const { coins, gun } = config;
         this.coins = coins;
-        this.gun = null;
+        this.gunType = gun;
         this.cooldown = 1;
+        this.circle = null;
+
+        this.pc = this.scene.add.container();
+        this.add(this.pc);
 
         this.init();
-        // this.circle = null;
         lego.event.on(PlayerModelEvents.GunUpdate, this.#onGunUpdate, this);
     }
 
     get shootingPoint() {
-        return new Phaser.Geom.Point(this.player.width / 2, 0);
+        switch (this.gunType) {
+            case 1:
+                const x = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX;
+                const y = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y;
+                return new Phaser.Geom.Point(x, y);
+
+            default:
+                return { x: 0, y: 0 };
+        }
+    }
+
+    setGunAngle(rad) {
+        this.gun.rotation = rad * Math.sign(this.scaleX);
     }
 
     turnRight() {
-        if (this.player.scaleX < 0) return;
-        this.player.scaleX *= -1;
+        if (this.pc.scaleX < 0) return;
+        this.pc.scaleX *= -1;
     }
 
     turnLeft() {
-        if (this.player.scaleX > 0) return;
-        this.player.scaleX *= -1;
+        if (this.pc.scaleX > 0) return;
+        this.pc.scaleX *= -1;
     }
 
     setTint(color) {
@@ -56,23 +72,27 @@ export default class PlayerView extends Phaser.GameObjects.Container {
         // }
     }
 
-    #initGun(config) {
-        //
+    drawCircle() {
+        this.circle?.destroy();
+        this.circle = this.scene.add.circle(this.shootingPoint.x, this.shootingPoint.y, 30, 0xffffff * Math.random());
+        this.pc.add(this.circle);
+    }
+
+    #initGun() {
+        this.gun = this.scene.add.image(-45, 27, `gun-${this.gunType}.png`);
+        const { x, y } = getAnchor(this.gunType);
+        this.gun.setOrigin(x, y);
+        this.pc.add(this.gun);
+        this.bringToTop(this.player);
     }
 
     init() {
-        // this.initAnims();
+        this.#initGun();
         this.initPlayer();
         this.setSize(this.player.width, this.player.height);
-        const gr = this.scene.add.rectangle(0, 0, this.player.width, this.player.height, 0xff0000, 0.3);
-        this.add(gr);
+        // const gr = this.scene.add.rectangle(0, 0, this.gun.width, this.gun.height, 0xff0000, 0.3);
+        // this.pc.add(gr);
     }
-
-    // drawCircle(color) {
-    //     this.circle?.destroy();
-    //     this.circle = this.scene.add.circle(this.shootingPoint.x, this.shootingPoint.y, 10, color);
-    //     this.add(this.circle);
-    // }
 
     initPlayer() {
         [
@@ -90,19 +110,31 @@ export default class PlayerView extends Phaser.GameObjects.Container {
             PLAYER_P3_IDLE,
             PLAYER_P4_WALK,
             PLAYER_P4_IDLE,
+            BOOM,
         ].forEach((c) => {
             this.scene.anims.create(c);
         });
 
         this.player = this.scene.add.sprite(0, 0, "duck-1", "idle-1-p1.png").play("idle-p1");
 
-        this.add(this.player);
+        this.pc.add(this.player);
     }
 
     playAnimation(anim) {
-        if (this.player.anims.currentAnim?.key !== anim) {
-            this.player.setTexture(`${anim}-1.png`);
-            this.player.play(anim);
+        const name = `${anim}-p${this.gunType}`;
+        if (this.player.anims.currentAnim?.key !== name) {
+            this.player.setTexture(`${name}-1.png`);
+            this.player.play(name);
         }
     }
 }
+
+const getAnchor = (n) => {
+    if (n === 1 || n === 2) {
+        return { x: 1, y: 0.5 };
+    } else if (n === 3) {
+        return { x: 1, y: 0.7 };
+    } else if (n === 4) {
+        return { x: 1, y: 0.85 };
+    }
+};

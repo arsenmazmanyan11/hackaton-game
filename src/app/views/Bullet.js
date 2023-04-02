@@ -3,17 +3,14 @@ import Vector from "./Vector";
 
 export default class Bullet extends Phaser.GameObjects.Sprite {
     constructor(scene, speed, direction) {
-        super(scene, 0, 0, "shot.png");
+        super(scene, 0, 0, "bullet.png");
 
         this.isActive = false;
         this.direction = null;
-        // this.remainingDist = CONFIG.bulletDist;
         this.remainingDist = PLAYER_CONFIG.bulletDistance;
         this.velocity = new Vector(0, 0);
         this.velocity.setLength(speed);
         this.velocity.setAngle(direction);
-
-        // this.setOrigin(0, 0.5);
     }
 
     setAngle(angle) {

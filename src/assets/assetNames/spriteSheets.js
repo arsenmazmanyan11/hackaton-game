@@ -1,4 +1,5 @@
 export const spriteSheets = [
+    "boom",
     "cancer",
     "cancerBoss",
     "devil",

@@ -1,0 +1,103 @@
+{
+	"textures": [
+		{
+			"image": "boom.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 869,
+				"h": 867
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "enemy_kill_3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 512,
+						"h": 482
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 512,
+						"h": 482
+					},
+					"frame": {
+						"x": 3,
+						"y": 3,
+						"w": 512,
+						"h": 482
+					}
+				},
+				{
+					"filename": "enemy_kill_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 405,
+						"h": 373
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 404,
+						"h": 373
+					},
+					"frame": {
+						"x": 3,
+						"y": 491,
+						"w": 404,
+						"h": 373
+					}
+				},
+				{
+					"filename": "enemy_kill_4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 345,
+						"h": 228
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 345,
+						"h": 228
+					},
+					"frame": {
+						"x": 521,
+						"y": 3,
+						"w": 345,
+						"h": 228
+					}
+				},
+				{
+					"filename": "enemy_kill_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 260,
+						"h": 270
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 259,
+						"h": 269
+					},
+					"frame": {
+						"x": 521,
+						"y": 237,
+						"w": 259,
+						"h": 269
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://github.com/odrick/free-tex-packer-core",
+		"version": "0.3.4"
+	}
+}

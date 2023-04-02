@@ -158,3 +158,14 @@ export const PLAYER_P4_IDLE = {
     frameRate: 8,
     repeat: -1,
 };
+
+export const BOOM = {
+    key: "explode",
+    frames: [
+        { key: "boom", frame: "enemy_kill_1.png" },
+        { key: "boom", frame: "enemy_kill_2.png" },
+        { key: "boom", frame: "enemy_kill_3.png" },
+    ],
+    frameRate: 16,
+    repeat: 0,
+};

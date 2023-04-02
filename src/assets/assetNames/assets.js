@@ -25,7 +25,6 @@ export const assets = [
     { name: "lot_4_grey.png", path: "assets/uncompressed/lot_4_grey.png" },
     { name: "particle.png", path: "assets/uncompressed/particle.png" },
     { name: "popup.png", path: "assets/uncompressed/popup.png" },
-    { name: "shot.png", path: "assets/uncompressed/shot.png" },
     { name: "store-item.png", path: "assets/uncompressed/store-item.png" },
     { name: "tile.png", path: "assets/uncompressed/tile.png" },
     { name: "up_window.png", path: "assets/uncompressed/up_window.png" },

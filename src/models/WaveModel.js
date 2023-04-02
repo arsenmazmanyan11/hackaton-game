@@ -1,4 +1,5 @@
 import EnemyModel from "./EnemyModel";
+import Head from "./HeadModel";
 import { ObservableModel } from "./ObservableModel";
 
 export class WaveModel extends ObservableModel {
@@ -62,6 +63,7 @@ export class WaveModel extends ObservableModel {
     removeEnemy(uuid) {
         const enemy = this.getEnemyByUuid(uuid);
         const index = this._enemies.indexOf(enemy);
+        Head.gameModel.playerModel.coins += enemy.coins;
 
         enemy.destroy();
         this._enemies.splice(index, 1);
