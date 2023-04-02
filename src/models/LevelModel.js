@@ -11,8 +11,13 @@ export class LevelModel extends ObservableModel {
         this._currentWave = null;
         this._complete = false;
         this._waves = [];
+        this._bkgConfig = config.bkgItems;
 
         this.makeObservable();
+    }
+
+    get bkgConfig() {
+        return this._bkgConfig;
     }
 
     get currentWaveIndex() {

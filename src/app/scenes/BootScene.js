@@ -1,4 +1,5 @@
 import { Scenes } from "../../constants";
+import { BOOT_SCENE_CONFIG } from "../../gameConfig";
 
 export default class BootScene extends Phaser.Scene {
     preload() {
@@ -6,27 +7,33 @@ export default class BootScene extends Phaser.Scene {
     }
 
     create() {
-        this.game.scene.stop(Scenes.Boot);
-        this.game.scene.start(Scenes.Game);
+        // this.game.scene.stop(Scenes.Boot);
+        // this.game.scene.start(Scenes.Game);
     }
 
     init() {
-        // this.#initLogo();
-        // this.#initButton();
+        const { logo: logoConfig, button: buttonConfig } = BOOT_SCENE_CONFIG;
+        this.#initLogo(logoConfig);
+        this.#initButton(buttonConfig);
     }
 
-    #initLogo() {
-        const { width, height } = this.scale.displaySize;
-        const logo = this.add.sprite(width / 2, height / 2, "logo.png");
-        logo.setOrigin(1);
-        logo.setPosition(width / 2, height / 2);
+    #initLogo(logoConfig) {
+        const { x, y, image, scale } = logoConfig;
+        // const { width, height } = this.scale.displaySize;
+        const logo = this.add.sprite(0, 0, image);
+        logo.setOrigin(0.5);
+        logo.setPosition(x, y);
+        logo.setScale(scale);
     }
 
-    #initButton() {
-        const { width, height } = this.scale.displaySize;
-        const btn = this.add.sprite(width / 2, height / 2, "btn-green.png");
-        btn.setOrigin(1);
-        btn.setPosition(width / 2 - 100, height / 2 + 200);
+    #initButton(buttonConfig) {
+        const { x, y, image, scale } = buttonConfig;
+
+        // const { width, height } = this.scale.displaySize;
+        const btn = this.add.sprite(0, 0, image);
+        btn.setOrigin(0.5);
+        btn.setPosition(x, y);
+        btn.setScale(scale);
         btn.setInteractive();
         btn.on(Phaser.Input.Events.POINTER_UP, () => {
             this.game.scene.stop(Scenes.Boot);

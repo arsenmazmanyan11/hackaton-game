@@ -39,9 +39,7 @@ export class GameView extends Phaser.GameObjects.Container {
                 break;
             case GameState.game:
                 this.player.cooldown = 1;
-                console.warn(34567890);
                 this.initBullets();
-                console.warn(this.bullets);
                 break;
 
             default:
@@ -62,11 +60,11 @@ export class GameView extends Phaser.GameObjects.Container {
     }
 
     #onCurrentLevelUpdate(newValue) {
-        console.warn("onCurrentLevelUpdate");
         this.enemies.forEach((e) => e.destroy());
         this.enemies = [];
-        const { bkg } = newValue;
+        const { bkg, bkgConfig } = newValue;
         this.bkg.changeTexture(bkg);
+        this.bkg.setItems(bkgConfig);
     }
 
     #onCurrentWaveUpdate(newWave) {
@@ -102,10 +100,8 @@ export class GameView extends Phaser.GameObjects.Container {
 
     update() {
         if (this.state === GameState.levelLose || this.state === GameState.levelWin) return;
-        // console.log("update");
 
         this.player.cooldown -= 1 / 60;
-        console.log(this.player.cooldown);
         this.followPointer(this.scene.input.activePointer);
         this.bullets.forEach((b) => {
             b.isActive && b.update();
@@ -160,7 +156,6 @@ export class GameView extends Phaser.GameObjects.Container {
     }
 
     getBullet() {
-        console.warn(this.bullets);
         return this.bullets.find((b) => !b.isActive);
     }
 
@@ -174,9 +169,7 @@ export class GameView extends Phaser.GameObjects.Container {
         this.bullets.push(bullet);
     }
     #shootBullet(enemy) {
-        console.warn("SHOOOOOt");
         const bullet = this.getBullet();
-        console.log(bullet);
         if (!bullet) return;
         const { x: ex, y: ey } = enemy;
         const { x } = this.player.shootingPoint;

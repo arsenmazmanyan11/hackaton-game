@@ -76,7 +76,6 @@ export class GameModel extends ObservableModel {
         this._playerModel.restart();
         this._currentLevel = this._levels[this._level];
         this._currentLevel.restartLevel();
-        console.warn(this._currentLevel);
     }
 
     init() {

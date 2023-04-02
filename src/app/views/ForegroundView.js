@@ -59,13 +59,11 @@ export class ForegroundView extends Phaser.GameObjects.Container {
         const { scale, bg, tint } = STORE_POPUP_CONFIG;
         this.storePopup = new StorePopup(this.scene, bg, tint);
         this.storePopup.setScale(scale);
-        console.warn(scale, bg, tint);
         this.storePopup.setPosition(x, y + 100);
         // this.lastShown = "store";
         this.storePopup.on("storeBackBtnClick", () => {
             this.storePopup.destroy();
             this.storePopup = null;
-            console.warn(this.lastShown);
             if (this.lastShown === "win") {
                 this.#initWinPopup(x, y);
             } else if (this.lastShown === "lose") {
