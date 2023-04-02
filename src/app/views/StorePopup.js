@@ -29,13 +29,19 @@ export class StorePopup extends Phaser.GameObjects.Container {
             this.add(item);
         });
 
-        const { position, scale, bg: btnBg } = STORE_POPUP_CONFIG.backButton;
+        const { position, scale, scaleDown, bg: btnBg } = STORE_POPUP_CONFIG.backButton;
 
         const backBtn = this.scene.add.sprite(position.x, position.y, btnBg);
-        backBtn.setInteractive();
+        backBtn.setScale(scale);
+        this.scene.time.delayedCall(200, () => {
+            backBtn.setInteractive();
+        });
+
         backBtn.on("pointerdown", () => {
+            backBtn.setScale(scaleDown);
+        });
+        backBtn.on("pointerup", () => {
             this.emit("storeBackBtnClick");
-            // lego.event.emit(ForegroundEvents.NextLvlClick);
         });
         this.add(backBtn);
     }

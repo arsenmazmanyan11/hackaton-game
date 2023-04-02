@@ -195,6 +195,7 @@ export const STORE_POPUP_CONFIG = {
         },
         bg: "yellow-btn.png",
         scale: 1,
+        scaleDown: 0.7,
     },
 };
 
@@ -210,6 +211,7 @@ export const WIN_POPUP_CONFIG = {
         },
         bg: "yellow-btn.png",
         scale: 1,
+        scaleDown: 0.7,
     },
     nextLvlButton: {
         position: {
@@ -218,6 +220,7 @@ export const WIN_POPUP_CONFIG = {
         },
         bg: "blue-btn.png",
         scale: 1,
+        scaleDown: 0.7,
     },
 };
 
@@ -233,6 +236,7 @@ export const LOSE_POPUP_CONFIG = {
         },
         bg: "yellow-btn.png",
         scale: 1,
+        scaleDown: 0.7,
     },
     retryBtn: {
         position: {
@@ -241,5 +245,6 @@ export const LOSE_POPUP_CONFIG = {
         },
         bg: "blue-btn.png",
         scale: 1,
+        scaleDown: 0.7,
     },
 };

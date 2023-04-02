@@ -13,23 +13,33 @@ export class LevelLosePopup extends Phaser.GameObjects.Container {
         bkg.setTint(0xaa0000);
         this.add(bkg);
 
-        const { position: sPos, bg: sBg, scale: sScale } = LOSE_POPUP_CONFIG.storeButton;
+        const { position: sPos, bg: sBg, scale: sScale, scaleDown: sScaleDown } = LOSE_POPUP_CONFIG.storeButton;
 
         const storeBtn = this.scene.add.sprite(sPos.x, sPos.y, sBg);
         storeBtn.setScale(sScale);
-        storeBtn.setInteractive();
+        this.scene.time.delayedCall(200, () => {
+            storeBtn.setInteractive();
+        });
         storeBtn.on("pointerdown", () => {
+            storeBtn.setScale(sScaleDown);
+        });
+        storeBtn.on("pointerup", () => {
             this.emit("loseStoreBtnClick");
             lego.event.emit(ForegroundEvents.StoreClick);
         });
         this.add(storeBtn);
 
-        const { position: rPos, bg: rBg, scale: rScale } = LOSE_POPUP_CONFIG.retryBtn;
+        const { position: rPos, bg: rBg, scale: rScale, scaleDown: rScaleDown } = LOSE_POPUP_CONFIG.retryBtn;
 
         const retryBtn = this.scene.add.sprite(rPos.x, rPos.y, rBg);
         retryBtn.setScale(rScale);
-        retryBtn.setInteractive();
+        this.scene.time.delayedCall(200, () => {
+            retryBtn.setInteractive();
+        });
         retryBtn.on("pointerdown", () => {
+            retryBtn.setScale(rScaleDown);
+        });
+        retryBtn.on("pointerup", () => {
             this.emit("loseRetryClick");
             lego.event.emit(ForegroundEvents.RetryClick);
         });
