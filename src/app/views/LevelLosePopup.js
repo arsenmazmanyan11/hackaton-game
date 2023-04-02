@@ -12,26 +12,26 @@ export class LevelLosePopup extends Phaser.GameObjects.Container {
         bkg.setTint(0xaa0000);
         this.add(bkg);
 
-        const storeBtn = this.scene.add.sprite(-150, 100, "yellow-btn.png");
+        const { position: sPos, bg: sBg, scale: sScale } = WIN_POPUP_CONFIG.storeButton;
+
+        const storeBtn = this.scene.add.sprite(sPos.x, sPos.y, sBg);
+        storeBtn.setScale(sScale);
         storeBtn.setInteractive();
         storeBtn.on("pointerdown", () => {
-            this.emit("btnClick");
+            this.emit("loseStoreBtnClick");
             lego.event.emit(ForegroundEvents.StoreClick);
         });
         this.add(storeBtn);
 
-        const retryBtn = this.scene.add.sprite(150, 100, "blue-btn.png");
+        const { position: rPos, bg: rBg, scale: rScale } = WIN_POPUP_CONFIG.storeButton;
+
+        const retryBtn = this.scene.add.sprite(rPos.x, rPos.y, rBg);
+        retryBtn.setScale(rScale);
         retryBtn.setInteractive();
-        retryBtn.setTint(0xf00f00);
         retryBtn.on("pointerdown", () => {
-            this.emit("btnClick");
+            this.emit("loseRetryClick");
             lego.event.emit(ForegroundEvents.RetryClick);
         });
         this.add(retryBtn);
-        // this.#initWinPopup();
-    }
-
-    #initWinPopup() {
-        //
     }
 }

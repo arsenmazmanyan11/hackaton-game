@@ -18,7 +18,7 @@ export const PLAYER_CONFIG = {
 export const ENEMY_TYPE = {
     cancer: {
         name: "cancer",
-        health: 100,
+        health: 20,
         coins: 20,
         speed: 10,
     },
@@ -52,7 +52,7 @@ export const ENEMY_TYPE = {
 export const BOSS_TYPE = {
     type1: {
         name: "boss-type1",
-        health: 1000,
+        health: 20,
         coins: 100,
         speed: 11,
     },
@@ -96,7 +96,7 @@ export const LEVELS_CONFIG = [
             //     respawnTimeout: 3000,
             // },
             {
-                enemiesCount: 5,
+                enemiesCount: 2,
                 enemyType: ENEMY_TYPE.cancer,
                 spawnPosition: {
                     x: -100,
@@ -142,3 +142,88 @@ export const LEVELS_CONFIG = [
     //     ],
     // },
 ];
+
+export const COUNTER_CONFIG = {
+    position: {
+        x: -500,
+        y: -400,
+    },
+    scale: 3.5,
+    fontSize: 50,
+    textPosition: {
+        x: -100,
+        y: 0,
+    },
+    bg: "btn-green.png",
+};
+
+export const STORE_POPUP_CONFIG = {
+    itemsConfig: [
+        // 1
+        { x: -300, y: 0, scale: 1, bg: "store-item.png" },
+        // 2
+        { x: -100, y: 0, scale: 1, bg: "store-item.png" },
+        // 3
+        { x: 100, y: 0, scale: 1, bg: "store-item.png" },
+        // 4
+        { x: 300, y: 0, scale: 1, bg: "store-item.png" },
+    ],
+    scale: 3,
+    bg: "popup.png",
+    tint: 0x0000aa, //set 0xffffff if not necessary
+
+    backButton: {
+        position: {
+            x: -150,
+            y: 100,
+        },
+        bg: "yellow-btn.png",
+        scale: 1,
+    },
+};
+
+export const WIN_POPUP_CONFIG = {
+    scale: 3,
+    bg: "popup.png",
+    tint: 0x00aa00, //set 0xffffff if not necessary
+
+    storeButton: {
+        position: {
+            x: -150,
+            y: 100,
+        },
+        bg: "yellow-btn.png",
+        scale: 1,
+    },
+    nextLvlButton: {
+        position: {
+            x: 150,
+            y: 100,
+        },
+        bg: "blue-btn.png",
+        scale: 1,
+    },
+};
+
+export const LOSE_POPUP_CONFIG = {
+    scale: 3,
+    bg: "popup.png",
+    tint: 0xaa0000, //set 0xffffff if not necessary
+
+    storeButton: {
+        position: {
+            x: -150,
+            y: 100,
+        },
+        bg: "yellow-btn.png",
+        scale: 1,
+    },
+    retryBtn: {
+        position: {
+            x: 150,
+            y: 100,
+        },
+        bg: "blue-btn.png",
+        scale: 1,
+    },
+};

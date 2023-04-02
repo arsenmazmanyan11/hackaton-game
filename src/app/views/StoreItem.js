@@ -2,15 +2,15 @@ import { lego } from "@armathai/lego";
 import { StorePopupEvents } from "../../events/GameEvents";
 
 export class StoreItem extends Phaser.GameObjects.Container {
-    constructor(scene, config) {
+    constructor(scene, config, bg) {
         super(scene);
         this.config = config;
         this.uuid = config.uuid;
-        this.init();
+        this.init(bg);
     }
 
-    init() {
-        this.bkg = this.scene.add.sprite(0, 0, "store-item.png");
+    init(bg) {
+        this.bkg = this.scene.add.sprite(0, 0, bg);
         this.bkg.setTint(this.config.tint);
         this.add(this.bkg);
 

@@ -1,5 +1,6 @@
 import { lego } from "@armathai/lego";
 import { PlayerModelEvents } from "../../events/ModelEvents";
+import { COUNTER_CONFIG } from "../../gameConfig";
 import { CoinsCounter } from "./CoinsCounter";
 
 export class UIView extends Phaser.GameObjects.Container {
@@ -17,8 +18,9 @@ export class UIView extends Phaser.GameObjects.Container {
     initCoinsCounter() {
         this.coinsCounter = new CoinsCounter(this.scene);
         this.coinsCounter.setScrollFactor(0);
-        this.coinsCounter.setPosition(-500, -400);
-        this.coinsCounter.setScale(3.5);
+        const { position, scale } = COUNTER_CONFIG;
+        this.coinsCounter.setPosition(position.x, position.y);
+        this.coinsCounter.setScale(scale);
         this.add(this.coinsCounter);
     }
 

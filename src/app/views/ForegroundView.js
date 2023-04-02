@@ -1,6 +1,7 @@
 import { lego } from "@armathai/lego";
 import { ForegroundEvents, GameEvents } from "../../events/GameEvents";
 import { ItemModelEvents } from "../../events/ModelEvents";
+import { STORE_POPUP_CONFIG, WIN_POPUP_CONFIG } from "../../gameConfig";
 import { LevelLosePopup } from "./LevelLosePopup";
 import { LevelWinPopup } from "./LevelWinPopup";
 import { StorePopup } from "./StorePopup";
@@ -9,6 +10,7 @@ export class ForegroundView extends Phaser.GameObjects.Container {
     constructor(scene) {
         super(scene);
         this.init();
+        this.lastShown = "";
         lego.event.on(GameEvents.ShowWinPopup, this.#initWinPopup, this);
         lego.event.on(GameEvents.ShowLosePopup, this.#initLosePopup, this);
         lego.event.on(GameEvents.ShowStorePopup, this.#initStorePopup, this);
@@ -22,11 +24,16 @@ export class ForegroundView extends Phaser.GameObjects.Container {
     }
 
     #initWinPopup(x, y) {
-        this.levelWinPopup = new LevelWinPopup(this.scene);
-        // this.levelWinPopup.setScrollFactor(0);
-        this.levelWinPopup.setScale(3);
+        const { scale, bg, tint } = WIN_POPUP_CONFIG;
+        this.levelWinPopup = new LevelWinPopup(this.scene, bg, tint);
+        this.levelWinPopup.setScale(scale);
         this.levelWinPopup.setPosition(x, y + 100);
-        this.levelWinPopup.on("btnClick", () => {
+        this.lastShown = "win";
+        this.levelWinPopup.on("winNextLvlClick", () => {
+            this.levelWinPopup.destroy();
+            this.levelWinPopup = null;
+        });
+        this.levelWinPopup.on("winStoreBtnClick", () => {
             this.levelWinPopup.destroy();
             this.levelWinPopup = null;
         });
@@ -34,10 +41,12 @@ export class ForegroundView extends Phaser.GameObjects.Container {
     }
 
     #initLosePopup(x, y) {
-        this.levelLosePopup = new LevelLosePopup(this.scene);
-        // this.levelLosePopup.setScrollFactor(0);
-        this.levelLosePopup.setScale(3);
+        const { scale, bg, tint } = WIN_POPUP_CONFIG;
+
+        this.levelLosePopup = new LevelLosePopup(this.scene, bg, tint);
+        this.levelLosePopup.setScale(scale);
         this.levelLosePopup.setPosition(x, y + 100);
+        this.lastShown = "lose";
         this.levelLosePopup.on("btnClick", () => {
             this.levelLosePopup.destroy();
             this.levelLosePopup = null;
@@ -47,12 +56,19 @@ export class ForegroundView extends Phaser.GameObjects.Container {
     }
 
     #initStorePopup(x, y) {
-        this.storePopup = new StorePopup(this.scene);
-        this.storePopup.setScale(3);
+        const { scale, bg, tint } = STORE_POPUP_CONFIG;
+        this.storePopup = new StorePopup(this.scene, bg, tint);
+        this.storePopup.setScale(scale);
         this.storePopup.setPosition(x, y + 100);
-        // this.storePopup.on("btnClick", () => {
-        //     // this.storePopup.destroy();
-        // });
+        this.lastShown = "store";
+        this.storePopup.on("storeBackBtnClick", () => {
+            this.storePopup.destroy();
+            if (this.lastShown === "win") {
+                this.#initWinPopup();
+            } else if (this.lastShown === "lose") {
+                this.#initLosePopup();
+            }
+        });
         this.add(this.storePopup);
     }
 
