@@ -5,13 +5,13 @@ export default class EnemyModel extends ObservableModel {
     constructor(config) {
         super("EnemyModel");
         this._config = config;
-        this._health = 0;
-        this._coins = 0;
-        this._speed = 0;
-        this._enemyName = "";
+        this._health = config.health;
+        this._coins = config.coins;
+        this._speed = config.speed;
+        this._enemyName = config.name;
         this._state = EnemyState.unknown;
         this._isDead = false;
-        this._spawnPosition = null;
+        this._spawnPosition = config.spawnPosition;
 
         this.makeObservable();
     }
@@ -28,24 +28,12 @@ export default class EnemyModel extends ObservableModel {
         return this._coins;
     }
 
-    set coins(value) {
-        this._coins = value;
-    }
-
     get speed() {
         return this._speed;
     }
 
-    set speed(value) {
-        this._speed = value;
-    }
-
     get enemyName() {
         return this._enemyName;
-    }
-
-    set enemyName(value) {
-        this._enemyName = value;
     }
 
     get isDead() {
@@ -68,10 +56,6 @@ export default class EnemyModel extends ObservableModel {
         return this._spawnPosition;
     }
 
-    set spawnPosition(value) {
-        this._spawnPosition = value;
-    }
-
     decreaseHealth(damage) {
         this._health -= damage;
         if (this._health <= 0) {
@@ -80,10 +64,10 @@ export default class EnemyModel extends ObservableModel {
     }
 
     init() {
-        const { name, health, coins, speed } = this._config;
-        this._enemyName = name;
-        this._health = health;
-        this._coins = coins;
-        this._speed = speed;
+        // const { name, health, coins, speed } = this._config;
+        // this._enemyName = name;
+        // this._health = health;
+        // this._coins = coins;
+        // this._speed = speed;
     }
 }

@@ -13,6 +13,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
         this.velocity.setAngle(0);
     }
 
+    destroy() {
+        this.velocity = null;
+        super.destroy();
+    }
+
     tint(color) {
         this.setTint(color);
     }

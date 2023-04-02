@@ -71,32 +71,74 @@ export const BOSS_TYPE = {
 };
 
 // TO CHANGE
-export const LEVEL_CONFIG = [
+export const LEVELS_CONFIG = [
     {
         name: "desert",
         bkg: "desert.jpg",
-        enemy: ENEMY_TYPE.cancer,
-        enemiesCount: 50,
-        enemiesRespawnCounts: [10, 15, 25],
-        respawnTimeout: 10000,
-        enemiesRespawnPositions: [
-            { x: 0, y: 0 },
-            { x: 100, y: 100 },
-            { x: 200, y: 200 },
+
+        waves: [
+            {
+                enemiesCount: 1,
+                enemyType: ENEMY_TYPE.cancer,
+                spawnPosition: {
+                    x: 0,
+                    y: 0,
+                },
+                respawnTimeout: 0,
+            },
+            // {
+            //     enemiesCount: 5,
+            //     enemyType: ENEMY_TYPE.cancer,
+            //     spawnPosition: {
+            //         x: 100,
+            //         y: 100,
+            //     },
+            //     respawnTimeout: 3000,
+            // },
+            {
+                enemiesCount: 5,
+                enemyType: ENEMY_TYPE.cancer,
+                spawnPosition: {
+                    x: -100,
+                    y: -100,
+                },
+                respawnTimeout: 3000,
+                boss: BOSS_TYPE.type1,
+            },
         ],
     },
-    {
-        name: "desert",
-        bkg: "bg.jpg",
-        enemy: ENEMY_TYPE.type2,
-        enemiesCount: 50,
-        enemiesRespawnCounts: [10, 15, 25],
-        respawnTimeout: 10000,
-        enemiesRespawnPositions: [
-            { x: 0, y: 0 },
-            { x: 100, y: 100 },
-            { x: 200, y: 200 },
-        ],
-        boss: BOSS_TYPE.type1,
-    },
+    // {
+    //     name: "desert",
+    //     bkg: "bg.jpg",
+    //     waves: [
+    //         {
+    //             enemiesCount: 1,
+    //             enemyType: ENEMY_TYPE.type2,
+    //             spawnPosition: {
+    //                 x: 0,
+    //                 y: 0,
+    //             },
+    //             respawnTimeout: 0,
+    //         },
+    //         {
+    //             enemiesCount: 5,
+    //             enemyType: ENEMY_TYPE.type2,
+    //             spawnPosition: {
+    //                 x: 100,
+    //                 y: 100,
+    //             },
+    //             respawnTimeout: 3000,
+    //         },
+    //         {
+    //             enemiesCount: 15,
+    //             enemyType: ENEMY_TYPE.type2,
+    //             spawnPosition: {
+    //                 x: -100,
+    //                 y: -100,
+    //             },
+    //             boss: BOSS_TYPE.type2,
+    //             respawnTimeout: 3000,
+    //         },
+    //     ],
+    // },
 ];

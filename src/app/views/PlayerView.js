@@ -9,6 +9,7 @@ export default class PlayerView extends Phaser.GameObjects.Container {
         this.lives = lives;
         this.coins = coins;
         this.gun = null;
+        this.cooldown = 1;
 
         this.init();
         // this.circle = null;

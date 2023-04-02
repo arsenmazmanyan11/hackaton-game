@@ -1,18 +1,14 @@
 export const EnemyModelEvents = {
     HealthUpdate: "EnemyModelHealthUpdate",
-    CoinsUpdate: "EnemyModelCoinsUpdate",
-    SpeedUpdate: "EnemyModelSpeedUpdate",
-    EnemyNameUpdate: "EnemyModelEnemyNameUpdate",
     IsDeadUpdate: "EnemyModelIsDeadUpdate",
     StateUpdate: "EnemyModelStateUpdate",
-    SpawnPositionUpdate: "EnemyModelSpawnPositionUpdate",
 };
 
 export const GameModelEvents = {
     PlayerModelUpdate: "GameModelPlayerModelUpdate",
-    LevelModelUpdate: "GameModelLevelModelUpdate",
     StoreModelUpdate: "GameModelStoreModelUpdate",
     LevelUpdate: "GameModelLevelUpdate",
+    CurrentLevelUpdate: "GameModelCurrentLevelUpdate",
     StateUpdate: "GameModelStateUpdate",
 };
 
@@ -33,10 +29,9 @@ export const ItemModelEvents = {
 };
 
 export const LevelModelEvents = {
-    IsCompletedUpdate: "LevelModelIsCompletedUpdate",
-    ActiveEnemiesUpdate: "LevelModelActiveEnemiesUpdate",
-    WaveUpdate: "LevelModelWaveUpdate",
-    BkgUpdate: "LevelModelBkgUpdate",
+    CurrentWaveIndexUpdate: "LevelModelCurrentWaveIndexUpdate",
+    CurrentWaveUpdate: "LevelModelCurrentWaveUpdate",
+    CompleteUpdate: "LevelModelCompleteUpdate",
 };
 
 export const PlayerModelEvents = {
@@ -48,3 +43,5 @@ export const PlayerModelEvents = {
 };
 
 export const StoreModelEvents = { IsShownUpdate: "StoreModelIsShownUpdate", ItemsUpdate: "StoreModelItemsUpdate" };
+
+export const WaveModelEvents = { IsCompletedUpdate: "WaveModelIsCompletedUpdate" };

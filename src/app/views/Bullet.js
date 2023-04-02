@@ -2,7 +2,7 @@ import Vector from "./Vector";
 
 export default class Bullet extends Phaser.GameObjects.Sprite {
     constructor(scene, speed, direction) {
-        super(scene, 0, 0, "bullet.png");
+        super(scene, 0, 0, "shot.png");
 
         this.isActive = false;
         this.direction = null;

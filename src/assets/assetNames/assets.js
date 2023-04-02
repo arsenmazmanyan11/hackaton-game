@@ -9,4 +9,5 @@ export const assets = [
     { name: "finger-game.png", path: "assets/uncompressed/finger-game.png" },
     { name: "logo.png", path: "assets/uncompressed/logo.png" },
     { name: "particle.png", path: "assets/uncompressed/particle.png" },
+    { name: "shot.png", path: "assets/uncompressed/shot.png" },
 ];

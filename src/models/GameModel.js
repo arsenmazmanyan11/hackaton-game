@@ -1,5 +1,5 @@
 import { GameState } from "../constants";
-import { LEVEL_CONFIG, PLAYER_CONFIG } from "../gameConfig";
+import { LEVELS_CONFIG, PLAYER_CONFIG } from "../gameConfig";
 import { STORE_ITEMS } from "../storeItemModels";
 import { LevelModel } from "./LevelModel";
 import { ObservableModel } from "./ObservableModel";
@@ -10,9 +10,10 @@ export class GameModel extends ObservableModel {
     constructor() {
         super("GameModel");
         this._playerModel = null;
-        this._levelModel = null;
+        this._levels = [];
+        this._currentLevel = null;
         this._storeModel = null;
-        this._level = 0;
+        this._level = -1;
         this._state = GameState.unknown;
         this.makeObservable();
     }
@@ -23,14 +24,6 @@ export class GameModel extends ObservableModel {
 
     set playerModel(value) {
         this._playerModel = value;
-    }
-
-    get levelModel() {
-        return this._levelModel;
-    }
-
-    set levelModel(value) {
-        this._levelModel = value;
     }
 
     get storeModel() {
@@ -49,6 +42,14 @@ export class GameModel extends ObservableModel {
         this._level = value;
     }
 
+    get currentLevel() {
+        return this._currentLevel;
+    }
+
+    set currentLevel(value) {
+        this._currentLevel = value;
+    }
+
     get state() {
         return this._state;
     }
@@ -57,20 +58,16 @@ export class GameModel extends ObservableModel {
         this._state = value;
     }
 
-    setLevel(level) {
-        this._level = level;
-        const newLevel = new LevelModel();
-        newLevel.setNewConfig(LEVEL_CONFIG[this.level - 1]);
-        this._levelModel = newLevel;
-    }
-
-    startWave() {
-        this._levelModel.startWave();
+    startNextLevel() {
+        this._level += 1;
+        this._currentLevel = this._levels[this._level];
+        this._currentLevel.startNextWave();
     }
 
     init() {
         this.#initPlayerModel();
         this.#initStoreModel();
+        this.#initLevels();
     }
 
     #initPlayerModel() {
@@ -81,5 +78,13 @@ export class GameModel extends ObservableModel {
     #initStoreModel() {
         this._storeModel = new StoreModel(STORE_ITEMS);
         this._storeModel.init();
+    }
+
+    #initLevels() {
+        this._levels = LEVELS_CONFIG.map((c) => {
+            const level = new LevelModel(c);
+            level.init();
+            return level;
+        });
     }
 }

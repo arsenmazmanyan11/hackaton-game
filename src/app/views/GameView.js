@@ -1,6 +1,7 @@
 import { lego } from "@armathai/lego";
 import { TOLERANCE } from "../../constants";
-import { GameModelEvents, LevelModelEvents } from "../../events/ModelEvents";
+import { GameEvents } from "../../events/GameEvents";
+import { EnemyModelEvents, GameModelEvents, LevelModelEvents } from "../../events/ModelEvents";
 import { PLAYER_CONFIG } from "../../gameConfig";
 import BackgroundView from "./BackgroundView";
 import Bullet from "./Bullet";
@@ -16,22 +17,30 @@ export class GameView extends Phaser.GameObjects.Container {
         this.init();
 
         lego.event.on(GameModelEvents.PlayerModelUpdate, this.#onPlayerModelUpdate, this);
-        lego.event.on(GameModelEvents.LevelModelUpdate, this.#onLevelModelUpdate, this);
-        lego.event.on(LevelModelEvents.ActiveEnemiesUpdate, this.#onActiveEnemiesUpdate, this);
+        lego.event.on(GameModelEvents.CurrentLevelUpdate, this.#onCurrentLevelUpdate, this);
+        lego.event.on(LevelModelEvents.CurrentWaveUpdate, this.#onCurrentWaveUpdate, this);
+        lego.event.on(EnemyModelEvents.IsDeadUpdate, this.#onEnemyDeadUpdate, this);
     }
 
     #onPlayerModelUpdate(newValue, oldValue) {
         if (!oldValue) {
             this.#initPlayer(newValue);
+            this.initBullets();
         }
     }
 
-    #onLevelModelUpdate(newValue, oldValue) {
+    #onCurrentLevelUpdate(newValue) {
         const { bkg } = newValue;
         this.bkg.changeTexture(bkg);
     }
 
-    #onActiveEnemiesUpdate(enemies) {
+    #onCurrentWaveUpdate(newWave) {
+        if (!newWave) return;
+        this.#addEnemies(newWave.enemies);
+    }
+
+    #addEnemies(enemies) {
+        this.enemies = [];
         this.enemies = enemies.map((e) => {
             const { x, y } = getEnemySpawnPosition(e.spawnPosition);
             const dir = Phaser.Math.Angle.Between(x, y, this.player.x, this.player.y);
@@ -45,32 +54,35 @@ export class GameView extends Phaser.GameObjects.Container {
         });
     }
 
+    #onEnemyDeadUpdate(isDead, wasAlive, uuid) {
+        if (isDead) {
+            const enemy = this.#getEnemyByUuid(uuid);
+            const index = this.enemies.indexOf(enemy);
+            enemy.destroy();
+            this.enemies.splice(index, 1);
+            lego.event.emit(GameEvents.EnemyDied, uuid);
+        }
+    }
+
     update() {
+        this.player.cooldown -= 1 / 60;
         this.followPointer(this.scene.input.activePointer);
-        // this.bullets.forEach((b) => {
-        //     b.isActive && b.update();
-        // });
-        // this.#checkBulletAndEnemyCollision();
+        this.bullets.forEach((b) => {
+            b.isActive && b.update();
+        });
+        this.#checkBulletAndEnemyCollision();
         if (this.enemies.length !== 0) {
             this.enemies.forEach((e) => {
                 const dir = Phaser.Math.Angle.Between(e.x, e.y, this.player.x, this.player.y);
-
                 e.setAngle(dir);
                 e.update();
             });
-            this.#checkEnemyAndPlayerCollision();
         }
+        this.#checkEnemyAndPlayerCollision();
     }
 
     init() {
         this.initBkg();
-        // this.initBullets();
-        // for (let i = 0; i < 5; i++) {
-        //     const enemy = new Enemy(this.scene);
-        //     enemy.setPosition(300 * (i + 1), 300 * (i + 1));
-        //     this.add(enemy);
-        //     this.enemies.push(enemy);
-        // }
         this.scene.cameras.main.zoom = 0.35;
     }
 
@@ -103,13 +115,7 @@ export class GameView extends Phaser.GameObjects.Container {
 
     initBullets() {
         for (let i = 0; i < 50; i++) {
-            const bullet = new Bullet(this.scene, 0, 0);
-            bullet.visible = false;
-            bullet.on("distReached", () => {
-                this.#disbaleBullet(bullet);
-            });
-            this.add(bullet);
-            this.bullets.push(bullet);
+            this.#addNewBullet();
         }
     }
 
@@ -117,55 +123,70 @@ export class GameView extends Phaser.GameObjects.Container {
         return this.bullets.find((b) => !b.isActive);
     }
 
-    #shootBullet() {
-        // const bullet = this.getBullet();
-        // if (!bullet) return;
-        // const { x } = this.player.shootingPoint;
-        // bullet.visible = true;
-        // bullet.x = this.player.x + Math.cos(this.player.rotation) * x;
-        // bullet.y = this.player.y + (Math.sin(this.player.rotation) * this.player.height) / 2;
-        // bullet.setSpeed(CONFIG.bulletSpeed);
-        // bullet.setAngle(this.player.rotation);
-        // bullet.rotation = this.player.rotation;
-        // bullet.isActive = true;
+    #addNewBullet() {
+        const bullet = new Bullet(this.scene, 0, 0);
+        bullet.visible = false;
+        bullet.on("distReached", () => {
+            this.#disbaleBullet(bullet);
+        });
+        this.add(bullet);
+        this.bullets.push(bullet);
+    }
+    #shootBullet(enemy) {
+        const bullet = this.getBullet();
+        if (!bullet) return;
+        const { x: ex, y: ey } = enemy;
+        const { x } = this.player.shootingPoint;
+        bullet.visible = true;
+        bullet.x = this.player.x + Math.cos(this.player.rotation) * x;
+        bullet.y = this.player.y + (Math.sin(this.player.rotation) * this.player.height) / 2;
+        const rot = Phaser.Math.Angle.Between(bullet.x, bullet.y, ex, ey);
+        bullet.setSpeed(PLAYER_CONFIG.bulletSpeed);
+        bullet.setAngle(rot);
+        bullet.rotation = this.player.rotation;
+        bullet.isActive = true;
     }
 
     #disbaleBullet(bullet) {
-        // bullet.visible = false;
-        // bullet.setSpeed(0);
-        // bullet.isActive = false;
-        // bullet.remainingDist = CONFIG.bulletDist;
+        bullet.visible = false;
+        bullet.setSpeed(0);
+        bullet.isActive = false;
+        bullet.remainingDist = PLAYER_CONFIG.bulletDist;
     }
 
     #checkBulletAndEnemyCollision() {
-        // this.bullets.forEach((b) => {
-        //     if (b.isActive) {
-        //         this.enemies.forEach((e) => {
-        //             const dist = Phaser.Math.Distance.Between(b.x, b.y, e.x, e.y);
-        //             if (dist <= e.width / 2) {
-        //                 e.tint(0xffffff * Math.random());
-        //                 this.#disbaleBullet(b);
-        //             }
-        //         });
-        //     }
-        // });
+        this.bullets.forEach((b) => {
+            if (b.isActive) {
+                this.enemies.forEach((e) => {
+                    const dist = Phaser.Math.Distance.Between(b.x, b.y, e.x, e.y);
+                    if (dist <= 30) {
+                        e.tint(0xffffff * Math.random());
+                        this.#disbaleBullet(b);
+                        lego.event.emit(GameEvents.EnemyHit, e.uuid);
+                    }
+                });
+            }
+        });
     }
 
     #checkEnemyAndPlayerCollision() {
         this.enemies.forEach((e) => {
-            // if (b.isActive) {
-            // this.enemies.forEach((e) => {
             const dist = Phaser.Math.Distance.Between(e.x, e.y, this.player.x, this.player.y);
             if (dist <= 50) {
                 this.player.setTint(0xffffff * Math.random());
-                // this.#disbaleBullet(e);
                 this.player.alpha = 0.5;
-            } else {
-                this.player.alpha = 1;
             }
-            // });
-            // }
+            if (dist <= 500) {
+                if (this.player.cooldown <= 0) {
+                    this.player.cooldown = 1;
+                    this.#shootBullet(e);
+                }
+            }
         });
+    }
+
+    #getEnemyByUuid(uuid) {
+        return this.enemies.find((e) => e.uuid === uuid);
     }
 }
 
