@@ -1,3 +1,6 @@
+import { lego } from "@armathai/lego";
+import { EnemyState } from "../../constants";
+import { EnemyModelEvents } from "../../events/ModelEvents";
 import Vector from "./Vector";
 
 export default class Enemy extends Phaser.GameObjects.Container {
@@ -19,6 +22,29 @@ export default class Enemy extends Phaser.GameObjects.Container {
         this.velocity.setAngle(0);
 
         this.init();
+
+        lego.event.on(EnemyModelEvents.StateUpdate, this.#onStateUpdate, this);
+    }
+
+    #onStateUpdate(newState, oldState, uuid) {
+        if (this.uuid !== uuid) return;
+        if (newState === EnemyState.hit) {
+            this.blink();
+        }
+    }
+
+    blink() {
+        this.setSpeed(0);
+        this.scene.add.tween({
+            targets: this.enemy,
+            alpha: 0.4,
+            repeat: 3,
+            yoyo: true,
+            duration: 120,
+            onComplete: () => {
+                this.setSpeed(this.speed);
+            },
+        });
     }
 
     init() {

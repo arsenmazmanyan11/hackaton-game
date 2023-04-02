@@ -84,7 +84,10 @@ export default class EnemyModel extends ObservableModel {
     decreaseHealth(damage) {
         this._health -= damage;
         if (this._health <= 0) {
+            this._state = EnemyState.dead;
             this._isDead = true;
+        } else {
+            this._state = EnemyState.hit;
         }
     }
 

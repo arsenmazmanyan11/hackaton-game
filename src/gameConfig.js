@@ -9,10 +9,10 @@ import {
 import { FIRST_LEVEL_BACKGROUND_ITEMS, SECOND_LEVEL_BACKGROUND_ITEMS, THIRD_LEVEL_BACKGROUND_ITEMS } from "./bkgItems";
 
 export const GUN_TYPE = {
-    basic: "gun1",
-    dual: "gun2",
-    triple: "gun3",
-    penta: "gun4",
+    basic: 1,
+    dual: 2,
+    triple: 3,
+    penta: 4,
 };
 
 export const PLAYER_CONFIG = {

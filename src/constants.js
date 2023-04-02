@@ -21,9 +21,8 @@ export const EnemyState = {
     unknown: "unknown",
     alive: "alive",
     dead: "dead",
-    running: "running",
-    stands: "stands",
-    active: "active",
+    walk: "walk",
+    hit: "hit",
 };
 
 export const ROTATION_SPEED = Math.PI; // 0.5 turn per sec, 2 sec per turn

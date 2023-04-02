@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "generateAssets": "node nodeScripts/GenerateAssets.js",
-    "start": "webpack serve --config webpack/webpack.dev.js",
+    "start": "npm run generateAssets && npm run generateEventNames && webpack serve --config webpack/webpack.dev.js",
     "generateEventNames": "node nodeScripts/GenerateEventNames.js",
     "build": "webpack --config webpack/webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1",

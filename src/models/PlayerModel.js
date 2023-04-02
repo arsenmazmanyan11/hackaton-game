@@ -1,10 +1,9 @@
-import { GunModel } from "./GunModel";
 import { ObservableModel } from "./ObservableModel";
 
 export class PlayerModel extends ObservableModel {
     constructor(config) {
         super("PlayerModel");
-        const { speed } = config;
+        const { speed, gunType } = config;
         this._config = config;
         this._coins = 0;
         this._speed = speed;
@@ -12,7 +11,7 @@ export class PlayerModel extends ObservableModel {
         this._isDead = false;
         this._lastCoins = 0;
 
-        this._gun = null;
+        this._gun = gunType;
         this.makeObservable();
     }
 
@@ -105,15 +104,16 @@ export class PlayerModel extends ObservableModel {
     }
 
     init() {
-        const { initialCoins, gunType, bulletsCount, bulletDistance, bulletSpeed } = this._config;
-        const gunConfig = { gunType, bulletsCount, bulletDistance, bulletSpeed };
+        const { initialCoins } = this._config;
+        // const gunConfig = { gunType, bulletsCount, bulletDistance, bulletSpeed };
         this._coins = initialCoins;
+        console.warn(this._coins);
         this._lastCoins = this._coins;
-        this.#initGunModel(gunConfig);
+        // this.#initGunModel(gunConfig);
     }
 
-    #initGunModel(gunConfig) {
-        this._gun = new GunModel(gunConfig);
-        this._gun.init();
-    }
+    // #initGunModel(gunConfig) {
+    //     this._gun = new GunModel(gunConfig);
+    //     this._gun.init();
+    // }
 }

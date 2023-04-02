@@ -1,5 +1,6 @@
 import { lego } from "@armathai/lego";
 import { ForegroundEvents, GameEvents } from "../../events/GameEvents";
+import { PlayerModelEvents } from "../../events/ModelEvents";
 import { COUNTER_CONFIG } from "../../gameConfig";
 import { CoinsCounter } from "./CoinsCounter";
 
@@ -8,11 +9,11 @@ export class UIView extends Phaser.GameObjects.Container {
         super(scene);
 
         this.init();
-        // lego.event.on(PlayerModelEvents.CoinsUpdate, this.#coinsUpdate, this);
+        lego.event.on(PlayerModelEvents.CoinsUpdate, this.#coinsUpdate, this);
     }
 
     init() {
-        // this.initCoinsCounter();
+        this.initCoinsCounter();
         //TODO REMOVE
         // this.initStoreButton();
         // this.initWinButton();
