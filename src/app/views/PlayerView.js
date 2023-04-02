@@ -66,10 +66,18 @@ export default class PlayerView extends Phaser.GameObjects.Container {
     }
 
     #onGunUpdate(newValue, oldValue) {
-        console.warn(newValue, oldValue);
-        // if (!oldValue && newValue) {
-        // this.#initGun(newValue);
-        // }
+        this.gunType = newValue;
+
+        this.changeSkins();
+    }
+
+    changeSkins() {
+        this.player.setTexture(`duck-${this.gunType}`, `idle-1-p${this.gunType}.png`);
+        console.warn(`duck-${this.gunType}`, `idle-1-p${this.gunType}.png`);
+        this.gun.setTexture(`gun-${this.gunType}.png`);
+        this.player.play(`idle-p${this.gunType}`);
+        const { x, y } = getAnchor(this.gunType);
+        this.gun.setOrigin(x, y);
     }
 
     drawCircle() {
