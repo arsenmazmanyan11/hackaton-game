@@ -1,6 +1,6 @@
 import { GameState } from "../constants";
 import { LEVELS_CONFIG, PLAYER_CONFIG } from "../gameConfig";
-import { STORE_ITEMS } from "../storeItemModels";
+import { STORE_ITEMS } from "../storeItems";
 import { LevelModel } from "./LevelModel";
 import { ObservableModel } from "./ObservableModel";
 import { PlayerModel } from "./PlayerModel";
@@ -62,6 +62,11 @@ export class GameModel extends ObservableModel {
         this._level += 1;
         this._currentLevel = this._levels[this._level];
         this._currentLevel.startNextWave();
+    }
+
+    restartCurrentLevel() {
+        this._currentLevel = this._levels[this._level];
+        this._currentLevel.startFromZero();
     }
 
     init() {

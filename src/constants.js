@@ -11,6 +11,8 @@ export const GameState = {
     game: "game",
     gameOver: "gameOver",
     gameWin: "gameWin",
+    levelWin: "levelWin",
+    levelLose: "levelLose",
     restart: "restart",
     store: "store",
 };

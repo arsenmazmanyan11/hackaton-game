@@ -1,5 +1,5 @@
 import { lego } from "@armathai/lego";
-import { TOLERANCE } from "../../constants";
+import { GameState, TOLERANCE } from "../../constants";
 import { GameEvents } from "../../events/GameEvents";
 import { EnemyModelEvents, GameModelEvents, LevelModelEvents } from "../../events/ModelEvents";
 import { PLAYER_CONFIG } from "../../gameConfig";
@@ -20,6 +20,18 @@ export class GameView extends Phaser.GameObjects.Container {
         lego.event.on(GameModelEvents.CurrentLevelUpdate, this.#onCurrentLevelUpdate, this);
         lego.event.on(LevelModelEvents.CurrentWaveUpdate, this.#onCurrentWaveUpdate, this);
         lego.event.on(EnemyModelEvents.IsDeadUpdate, this.#onEnemyDeadUpdate, this);
+        lego.event.on(GameModelEvents.StateUpdate, this.#onGameStateUpdate, this);
+    }
+
+    #onGameStateUpdate(newState, oldState) {
+        switch (newState) {
+            case GameState.levelWin:
+                lego.event.emit(GameEvents.ShowWinPopup, this.player.x, this.player.y);
+                break;
+
+            default:
+                break;
+        }
     }
 
     #onPlayerModelUpdate(newValue, oldValue) {

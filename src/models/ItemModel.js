@@ -7,9 +7,14 @@ export default class ItemModel extends ObservableModel {
         this._price = 0;
         this._upgradeLevel = 0;
         this._isBought = false;
-        this._itemName = "";
+        this._tint = config.tint;
+        this._itemName = config.name;
 
         this.makeObservable();
+    }
+
+    get tint() {
+        return this._tint;
     }
 
     get price() {

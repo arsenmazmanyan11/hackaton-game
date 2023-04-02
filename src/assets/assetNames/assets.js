@@ -1,5 +1,6 @@
 export const assets = [
     { name: "bg.jpg", path: "assets/uncompressed/bg.jpg" },
+    { name: "blue-btn.png", path: "assets/uncompressed/blue-btn.png" },
     { name: "btn-green.png", path: "assets/uncompressed/btn-green.png" },
     { name: "bullet.png", path: "assets/uncompressed/bullet.png" },
     { name: "cancer.png", path: "assets/uncompressed/cancer.png" },
@@ -9,5 +10,8 @@ export const assets = [
     { name: "finger-game.png", path: "assets/uncompressed/finger-game.png" },
     { name: "logo.png", path: "assets/uncompressed/logo.png" },
     { name: "particle.png", path: "assets/uncompressed/particle.png" },
+    { name: "popup.png", path: "assets/uncompressed/popup.png" },
     { name: "shot.png", path: "assets/uncompressed/shot.png" },
+    { name: "store-item.png", path: "assets/uncompressed/store-item.png" },
+    { name: "yellow-btn.png", path: "assets/uncompressed/yellow-btn.png" },
 ];

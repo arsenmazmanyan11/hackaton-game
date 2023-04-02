@@ -47,6 +47,11 @@ export class LevelModel extends ObservableModel {
         this.#initWaves();
     }
 
+    restartLevel() {
+        this.#initWaves();
+        this.startNextWave();
+    }
+
     startNextWave() {
         this._currentWaveIndex += 1;
         if (this._currentWaveIndex === this._waves.length) {

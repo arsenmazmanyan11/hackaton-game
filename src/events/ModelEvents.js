@@ -36,7 +36,6 @@ export const LevelModelEvents = {
 
 export const PlayerModelEvents = {
     SpeedUpdate: "PlayerModelSpeedUpdate",
-    LivesUpdate: "PlayerModelLivesUpdate",
     CoinsUpdate: "PlayerModelCoinsUpdate",
     GunUpdate: "PlayerModelGunUpdate",
     ScoreUpdate: "PlayerModelScoreUpdate",

@@ -15,10 +15,12 @@ export class MainView extends Phaser.GameObjects.Container {
     }
 
     #build() {
+        this.foregroundView = new ForegroundView(this.scene);
+        this.uiView = new UIView(this.scene);
         this.add((this.gameView = new GameView(this.scene)));
-        this.add((this.uiView = new UIView(this.scene)));
+        this.add(this.uiView);
         // this.add((this.resultView = new ResultView(this.scene)));
-        this.add((this.foregroundView = new ForegroundView(this.scene)));
+        this.add(this.foregroundView);
 
         lego.event.emit(MainViewEvents.ViewsReady);
     }

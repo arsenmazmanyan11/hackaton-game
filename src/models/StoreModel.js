@@ -31,6 +31,10 @@ export default class StoreModel extends ObservableModel {
         return this._items.find((item) => item.itemName === name);
     }
 
+    getItemByUuid(uuid) {
+        return this._items.find((item) => item.uuid === uuid);
+    }
+
     buyItem(name) {
         const item = this.getItemByName(name);
         item.isBought = true;

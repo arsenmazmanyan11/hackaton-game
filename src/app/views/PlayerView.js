@@ -5,8 +5,7 @@ export default class PlayerView extends Phaser.GameObjects.Container {
     constructor(scene, config) {
         super(scene);
 
-        const { lives, coins } = config;
-        this.lives = lives;
+        const { coins } = config;
         this.coins = coins;
         this.gun = null;
         this.cooldown = 1;

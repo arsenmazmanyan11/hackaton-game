@@ -1,12 +1,12 @@
 export const GUN_TYPE = {
-    basic: 1,
-    dual: 2,
-    triple: 3,
-    penta: 5,
+    basic: "gun1",
+    dual: "gun2",
+    triple: "gun3",
+    penta: "gun4",
 };
 
 export const PLAYER_CONFIG = {
-    initalCoins: 100,
+    initialCoins: 10000,
     gunType: GUN_TYPE.basic,
     bulletsCount: 50,
     bulletDistance: 300, // TO CHANGE

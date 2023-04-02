@@ -4,10 +4,9 @@ import { ObservableModel } from "./ObservableModel";
 export class PlayerModel extends ObservableModel {
     constructor(config) {
         super("PlayerModel");
-        const { lives, initialCoins, speed } = config;
+        const { speed } = config;
         this._config = config;
-        this._lives = lives;
-        this._coins = initialCoins;
+        this._coins = 0;
         this._speed = speed;
         this._score = 0;
 
@@ -21,14 +20,6 @@ export class PlayerModel extends ObservableModel {
 
     set speed(value) {
         this._speed = value;
-    }
-
-    get lives() {
-        return this._lives;
-    }
-
-    set lives(value) {
-        this._lives = value;
     }
 
     get coins() {
@@ -79,17 +70,10 @@ export class PlayerModel extends ObservableModel {
         this.coins -= value;
     }
 
-    increaseLives() {
-        this.lives += 1;
-    }
-
-    decreaseLives() {
-        this.lives -= 1;
-    }
-
     init() {
-        const { gunType, bulletsCount, bulletDistance, bulletSpeed } = this._config;
+        const { initialCoins, gunType, bulletsCount, bulletDistance, bulletSpeed } = this._config;
         const gunConfig = { gunType, bulletsCount, bulletDistance, bulletSpeed };
+        this._coins = initialCoins;
         this.#initGunModel(gunConfig);
     }
 
