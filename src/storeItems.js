@@ -2,23 +2,19 @@ import { GUN_TYPE } from "./gameConfig";
 
 export const STORE_ITEMS = [
     {
-        name: GUN_TYPE.basic,
-        tint: 0x330000, //0xffffff
+        name: GUN_TYPE.dual,
         price: 100,
     },
     {
-        name: GUN_TYPE.dual,
-        tint: 0x003300,
+        name: GUN_TYPE.triple,
         price: 200,
     },
     {
-        name: GUN_TYPE.triple,
-        tint: 0x000033,
+        name: GUN_TYPE.penta,
         price: 300,
     },
     {
         name: GUN_TYPE.penta,
-        tint: 0x003333,
         price: 100,
     },
 ];

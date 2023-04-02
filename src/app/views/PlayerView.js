@@ -38,10 +38,45 @@ export default class PlayerView extends Phaser.GameObjects.Container {
     get shootingPoint() {
         switch (this.gunType) {
             case 1:
-                const x = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX;
-                const y = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y;
-                return new Phaser.Geom.Point(x, y);
-
+                const x1 = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX;
+                const y1 = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y;
+                return [new Phaser.Geom.Point(x1, y1)];
+            case 2:
+                const x21 = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX - 10;
+                const y21 = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y - 10;
+                const x22 = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX + 10;
+                const y22 = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y + 10;
+                return [new Phaser.Geom.Point(x21, y21), new Phaser.Geom.Point(x22, y22)];
+            case 3:
+                const x31 = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX - 25;
+                const y31 = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y;
+                const x32 = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX + 25;
+                const y32 = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y;
+                const x33 = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX;
+                const y33 = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y - 45;
+                return [
+                    new Phaser.Geom.Point(x31, y31),
+                    new Phaser.Geom.Point(x32, y32),
+                    new Phaser.Geom.Point(x33, y33),
+                ];
+            case 4:
+                const x41 = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX - 45;
+                const y41 = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y - 10;
+                const x42 = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX + 45;
+                const y42 = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y - 10;
+                const x43 = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX;
+                const y43 = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y - 45;
+                const x44 = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX + 35;
+                const y44 = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y + 65;
+                const x45 = -Math.cos(this.gun.rotation) * this.gun.width * this.pc.scaleX - 35;
+                const y45 = -Math.sin(this.gun.rotation) * this.gun.height + this.gun.y + 65;
+                return [
+                    new Phaser.Geom.Point(x41, y41),
+                    new Phaser.Geom.Point(x42, y42),
+                    new Phaser.Geom.Point(x43, y43),
+                    new Phaser.Geom.Point(x44, y44),
+                    new Phaser.Geom.Point(x45, y45),
+                ];
             default:
                 return { x: 0, y: 0 };
         }
