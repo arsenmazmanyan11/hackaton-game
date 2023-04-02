@@ -1,0 +1,103 @@
+{
+	"textures": [
+		{
+			"image": "cancerBoss.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2093,
+				"h": 1404
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "cancer-boss-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1074,
+						"h": 691
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1074,
+						"h": 686
+					},
+					"frame": {
+						"x": 3,
+						"y": 3,
+						"w": 1074,
+						"h": 686
+					}
+				},
+				{
+					"filename": "cancer-boss-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1045,
+						"h": 707
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 1044,
+						"h": 706
+					},
+					"frame": {
+						"x": 3,
+						"y": 695,
+						"w": 1044,
+						"h": 706
+					}
+				},
+				{
+					"filename": "cancer-boss-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1008,
+						"h": 686
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 1007,
+						"h": 681
+					},
+					"frame": {
+						"x": 1083,
+						"y": 3,
+						"w": 1007,
+						"h": 681
+					}
+				},
+				{
+					"filename": "cancer-boss-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1074,
+						"h": 691
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1074,
+						"h": 686
+					},
+					"frame": {
+						"x": 3,
+						"y": 3,
+						"w": 1074,
+						"h": 686
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://github.com/odrick/free-tex-packer-core",
+		"version": "0.3.4"
+	}
+}

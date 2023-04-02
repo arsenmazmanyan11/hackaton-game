@@ -3,7 +3,6 @@ export const assets = [
     { name: "blue-btn.png", path: "assets/uncompressed/blue-btn.png" },
     { name: "btn-green.png", path: "assets/uncompressed/btn-green.png" },
     { name: "bullet.png", path: "assets/uncompressed/bullet.png" },
-    { name: "cancer.png", path: "assets/uncompressed/cancer.png" },
     { name: "desert.jpg", path: "assets/uncompressed/desert.jpg" },
     { name: "duck.png", path: "assets/uncompressed/duck.png" },
     { name: "enemy.png", path: "assets/uncompressed/enemy.png" },

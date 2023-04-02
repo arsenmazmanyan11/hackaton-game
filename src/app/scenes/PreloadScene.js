@@ -1,4 +1,5 @@
 import { lego } from "@armathai/lego";
+
 import { assets } from "../../assets/assetNames/assets";
 import { audioAssets } from "../../assets/assetNames/audio";
 import { shaders } from "../../assets/assetNames/shaders";
@@ -46,7 +47,7 @@ export default class PreloadScene extends Phaser.Scene {
     loadSpriteSheets() {
         if (spriteSheets.length === 0) return;
         spriteSheets.forEach((el) => {
-            this.load.atlas(el, `./assets/spriteSheets/${el}.png`, `./assets/spriteSheets/${el}.json`);
+            this.load.atlas(el, `src/assets/spriteSheets/${el}.png`, `src/assets/spriteSheets/${el}.json`);
         });
     }
 

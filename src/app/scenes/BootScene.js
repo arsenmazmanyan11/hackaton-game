@@ -1,5 +1,5 @@
 import { Scenes } from "../../constants";
-import { BOOT_SCENE_CONFIG } from "../../gameConfig";
+// import { BOOT_SCENE_CONFIG } from "../../gameConfig";
 
 export default class BootScene extends Phaser.Scene {
     preload() {
@@ -8,14 +8,14 @@ export default class BootScene extends Phaser.Scene {
 
     create() {
         // TODO
-        // this.game.scene.stop(Scenes.Boot);
-        // this.game.scene.start(Scenes.Game);
+        this.game.scene.stop(Scenes.Boot);
+        this.game.scene.start(Scenes.Game);
     }
 
     init() {
-        const { logo: logoConfig, button: buttonConfig } = BOOT_SCENE_CONFIG;
-        this.#initLogo(logoConfig);
-        this.#initButton(buttonConfig);
+        // const { logo: logoConfig, button: buttonConfig } = BOOT_SCENE_CONFIG;
+        // this.#initLogo(logoConfig);
+        // this.#initButton(buttonConfig);
     }
 
     #initLogo(logoConfig) {

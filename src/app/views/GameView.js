@@ -1,5 +1,5 @@
 import { lego } from "@armathai/lego";
-import { GameState, TOLERANCE } from "../../constants";
+import { GameState } from "../../constants";
 import { GameEvents } from "../../events/GameEvents";
 import { EnemyModelEvents, GameModelEvents, LevelModelEvents, PlayerModelEvents } from "../../events/ModelEvents";
 import { PLAYER_CONFIG } from "../../gameConfig";
@@ -21,7 +21,12 @@ export class GameView extends Phaser.GameObjects.Container {
         lego.event.on(LevelModelEvents.CurrentWaveUpdate, this.#onCurrentWaveUpdate, this);
         lego.event.on(EnemyModelEvents.IsDeadUpdate, this.#onEnemyDeadUpdate, this);
         lego.event.on(PlayerModelEvents.IsDeadUpdate, this.#onPlayerDeadUpdate, this);
+        lego.event.on(PlayerModelEvents.GunUpdate, this.#onPlayerGunUpdate, this);
         lego.event.on(GameModelEvents.StateUpdate, this.#onGameStateUpdate, this);
+    }
+
+    #onPlayerGunUpdate(newGun) {
+        console.warn(newGun);
     }
 
     #onGameStateUpdate(newState, oldState) {
@@ -80,9 +85,9 @@ export class GameView extends Phaser.GameObjects.Container {
             const dir = Phaser.Math.Angle.Between(x, y, this.player.x, this.player.y);
             const enemy = new Enemy(this.scene, e);
             enemy.setPosition(x, y);
-            enemy.setScale(0.4);
             enemy.setSpeed(Math.random() * 10);
             enemy.setAngle(dir);
+            enemy.setScale(e.scale);
             this.add(enemy);
             return enemy;
         });
@@ -101,7 +106,7 @@ export class GameView extends Phaser.GameObjects.Container {
     update() {
         if (this.state === GameState.levelLose || this.state === GameState.levelWin) return;
         // TODO REMOVE
-        return;
+        // return;
         this.player.cooldown -= 1 / 60;
         this.followPointer(this.scene.input.activePointer);
         this.bullets.forEach((b) => {
@@ -139,14 +144,20 @@ export class GameView extends Phaser.GameObjects.Container {
         const { isDown, worldX, worldY } = pointer;
         const { x, y } = this.player;
         const dist = Phaser.Math.Distance.Between(worldX, worldY, x, y);
-        if (!isDown) return;
-        if (dist <= 60) return;
+        if (!isDown) {
+            this.player.playAnimation("idle-p1");
+            return;
+        }
+
         const radiansToPointer = Phaser.Math.Angle.Between(x, y, worldX, worldY);
-        if (Phaser.Math.Fuzzy.Equal(radiansToPointer, 0, TOLERANCE)) {
-            this.player.rotation = radiansToPointer;
+        if (radiansToPointer > Math.PI / 2 || radiansToPointer < -Math.PI / 2) {
+            this.player.turnLeft();
+        } else {
+            this.player.turnRight();
         }
         this.player.x += Math.cos(radiansToPointer) * PLAYER_CONFIG.speed;
         this.player.y += Math.sin(radiansToPointer) * PLAYER_CONFIG.speed;
+        this.player.playAnimation("walk-p1");
         // this.player.drawCircle(0xffffff * Math.random());
     }
 

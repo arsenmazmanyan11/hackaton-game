@@ -1,0 +1,103 @@
+{
+	"textures": [
+		{
+			"image": "devilBoss.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2308,
+				"h": 1897
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "devil-boss-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1171,
+						"h": 908
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1169,
+						"h": 908
+					},
+					"frame": {
+						"x": 3,
+						"y": 3,
+						"w": 1169,
+						"h": 908
+					}
+				},
+				{
+					"filename": "devil-boss-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1171,
+						"h": 977
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1169,
+						"h": 977
+					},
+					"frame": {
+						"x": 3,
+						"y": 917,
+						"w": 1169,
+						"h": 977
+					}
+				},
+				{
+					"filename": "devil-boss-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1129,
+						"h": 853
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1127,
+						"h": 853
+					},
+					"frame": {
+						"x": 1178,
+						"y": 3,
+						"w": 1127,
+						"h": 853
+					}
+				},
+				{
+					"filename": "devil-boss-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1171,
+						"h": 908
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 1169,
+						"h": 908
+					},
+					"frame": {
+						"x": 3,
+						"y": 3,
+						"w": 1169,
+						"h": 908
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://github.com/odrick/free-tex-packer-core",
+		"version": "0.3.4"
+	}
+}

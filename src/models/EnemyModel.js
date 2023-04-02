@@ -11,6 +11,9 @@ export default class EnemyModel extends ObservableModel {
         this._damage = config.damage;
         this._enemyName = config.name;
         this._state = EnemyState.unknown;
+        this._anim = config.anim;
+        this._scale = config.scale;
+        this._firstFrame = config.firstFrame;
         this._isDead = false;
         this._hitInterval = config.hitInterval;
         this._spawnPosition = config.spawnPosition;
@@ -18,8 +21,20 @@ export default class EnemyModel extends ObservableModel {
         this.makeObservable();
     }
 
+    get scale() {
+        return this._scale;
+    }
+
+    get firstFrame() {
+        return this._firstFrame;
+    }
+
     get health() {
         return this._health;
+    }
+
+    get anim() {
+        return this._anim;
     }
 
     get hitInterval() {

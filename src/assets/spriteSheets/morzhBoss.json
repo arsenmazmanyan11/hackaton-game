@@ -1,0 +1,103 @@
+{
+	"textures": [
+		{
+			"image": "morzhBoss.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 984,
+				"h": 525
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "morzh-boss-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 509,
+						"h": 260
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 509,
+						"h": 258
+					},
+					"frame": {
+						"x": 3,
+						"y": 3,
+						"w": 509,
+						"h": 258
+					}
+				},
+				{
+					"filename": "morzh-boss-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 478,
+						"h": 257
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 478,
+						"h": 255
+					},
+					"frame": {
+						"x": 3,
+						"y": 267,
+						"w": 478,
+						"h": 255
+					}
+				},
+				{
+					"filename": "morzh-boss-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 463,
+						"h": 300
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 463,
+						"h": 300
+					},
+					"frame": {
+						"x": 518,
+						"y": 3,
+						"w": 463,
+						"h": 300
+					}
+				},
+				{
+					"filename": "morzh-boss-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 463,
+						"h": 300
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 463,
+						"h": 300
+					},
+					"frame": {
+						"x": 518,
+						"y": 3,
+						"w": 463,
+						"h": 300
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://github.com/odrick/free-tex-packer-core",
+		"version": "0.3.4"
+	}
+}
